@@ -188,6 +188,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\mvc-courseproject - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mvc-courseproject - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Mvc-CourseProject.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -245,6 +248,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CourseProject.Services\CourseProject.Services.csproj">
+      <Project>{9e67a7c2-6b3a-495d-9112-bb1376bfba6f}</Project>
+      <Name>CourseProject.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
