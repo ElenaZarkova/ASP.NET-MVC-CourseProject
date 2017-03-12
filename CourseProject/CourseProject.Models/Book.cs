@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseProject.Models
 {
@@ -13,7 +11,7 @@ namespace CourseProject.Models
         private ICollection<User> usersCurrentlyReading;
         private ICollection<User> usersRead;
         private ICollection<Rating> ratings;
-
+        
         public Book()
         {
             this.usersWhoWantToRead = new HashSet<User>();
@@ -25,8 +23,9 @@ namespace CourseProject.Models
         public int Id { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
         [MinLength(1)]
-        [MaxLength(80)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         // TODO: maybe separate table
@@ -46,6 +45,10 @@ namespace CourseProject.Models
         [Required]
         public string CoverFilePath { get; set; }
          
+        public int GenreId { get; set; }
+
+        public virtual Genre Genre { get; set; }
+
         public virtual ICollection<User> UsersWhoWantToRead
         {
             get { return this.usersWhoWantToRead; }
