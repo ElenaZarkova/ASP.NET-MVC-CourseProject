@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 using CourseProject.Data.Contracts;
+using CourseProject.Web.Models;
+using CourseProject.Models;
 
 namespace CourseProject.Web.Controllers
 {
@@ -18,8 +21,12 @@ namespace CourseProject.Web.Controllers
 
         public ActionResult Index()
         {
-            var name = this.data.Genres.All.First().Name;
-            this.ViewBag.Name = name;
+            //Genre genre = null;
+            //var genreviewModel = (GenreViewModel)AutoMapper.Mapper.Map(genre, typeof(Genre), typeof(GenreViewModel));
+            // var genreviewModel = AutoMapper.Mapper.Map<GenreViewModel>(genre);
+            var genreviewModel = this.data.Genres.All.ProjectTo<GenreViewModel>().FirstOrDefault();
+            this.ViewBag.Name = genreviewModel.Name;
+            this.ViewBag.NameAndId = genreviewModel.NameAndId;
             return View();
         }
 
