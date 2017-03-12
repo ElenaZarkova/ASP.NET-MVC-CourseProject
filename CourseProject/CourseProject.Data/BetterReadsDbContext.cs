@@ -2,10 +2,11 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Microsoft.AspNet.Identity.EntityFramework;
 using CourseProject.Models;
+using CourseProject.Data.Contracts;
 
 namespace CourseProject.Data
 {
-    public class BetterReadsDbContext : IdentityDbContext<User>
+    public class BetterReadsDbContext : IdentityDbContext<User>, IBetterReadsDbContext
     {
         public BetterReadsDbContext()
             : base("BetterReads")
@@ -23,6 +24,11 @@ namespace CourseProject.Data
             return new BetterReadsDbContext();
         }
 
+        IDbSet<T> IBetterReadsDbContext.Set<T>()
+        {
+            return this.Set<T>();
+        }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasMany(x => x.WantToRead).WithMany(x => x.UsersWhoWantToRead);

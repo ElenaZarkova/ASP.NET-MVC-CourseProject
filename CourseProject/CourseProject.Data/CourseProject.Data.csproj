@@ -57,9 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterReadsData.cs" />
     <Compile Include="BetterReadsDbContext.cs" />
+    <Compile Include="Contracts\IBetterReadsData.cs" />
+    <Compile Include="Contracts\IBetterReadsDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EfRepository.cs" />
+    <Compile Include="Repositories\IEfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CourseProject.Models\CourseProject.Models.csproj">
