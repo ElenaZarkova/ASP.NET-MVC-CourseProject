@@ -49,9 +49,10 @@ namespace CourseProject.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [MinLength(3)]
+        [MaxLength(20)]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +65,13 @@ namespace CourseProject.Web.Models
 
     public class RegisterViewModel
     {
+        // TODO: db validations
+        [Required]
+        [MinLength(3)]
+        [MaxLength(20)]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

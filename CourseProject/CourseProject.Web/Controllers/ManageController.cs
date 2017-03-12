@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CourseProject.Web.Models;
+using CourseProject.Web.Identity;
 
 namespace CourseProject.Web.Controllers
 {
