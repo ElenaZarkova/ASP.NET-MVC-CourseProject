@@ -7,6 +7,8 @@ using Ninject.Web.Common;
 using CourseProject.Data;
 using CourseProject.Data.Contracts;
 using CourseProject.Data.Repositories;
+using CourseProject.Services;
+using CourseProject.Services.Contracts;
 
 namespace CourseProject.Web.App_Start.NinjectModules
 {
@@ -17,6 +19,7 @@ namespace CourseProject.Web.App_Start.NinjectModules
             this.Bind<IBetterReadsDbContext>().To<BetterReadsDbContext>().InRequestScope();
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             this.Bind<IBetterReadsData>().To<BetterReadsData>().InRequestScope();
+            this.Bind<IBooksService>().To<BooksService>().InRequestScope();
         }
     }
 }

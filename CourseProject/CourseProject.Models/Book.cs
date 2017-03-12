@@ -26,7 +26,7 @@ namespace CourseProject.Models
         [Index(IsUnique = true)]
         [MinLength(1)]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         // TODO: maybe separate table
         [Required]
