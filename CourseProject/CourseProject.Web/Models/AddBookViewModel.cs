@@ -26,9 +26,8 @@ namespace CourseProject.Web.Models
 
         // TODO: Fix date validation
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Published on")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PublishedOn { get; set; }
 
         [Required]

@@ -1,0 +1,6 @@
+﻿@model DateTime
+
+@*@Html.TextBoxFor(x => Model, String.Format("{0:d}", Model.ToShortDateString()),
+  new { @class = "datefield form-control", type = "date" })*@
+
+@Html.TextBox("", Model.ToString("dd/MM/yyyy"), new { @class = "datefield form-control", type = "date" }) 

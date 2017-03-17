@@ -40,7 +40,8 @@
     <div class="form-group">
         @Html.LabelFor(m => m.PublishedOn, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PublishedOn, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.PublishedOn, new { @class = "datefield form-control", type="date"})
+            @*@Html.EditorFor(m => m.PublishedOn)*@
             @Html.ValidationMessageFor(m => m.PublishedOn, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -60,6 +61,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-datepicker")
 }
 
 
