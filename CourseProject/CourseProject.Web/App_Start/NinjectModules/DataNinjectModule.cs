@@ -20,6 +20,7 @@ namespace CourseProject.Web.App_Start.NinjectModules
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             this.Bind<IBetterReadsData>().To<BetterReadsData>().InRequestScope();
             this.Bind<IBooksService>().To<BooksService>().InRequestScope();
+            this.Bind<IGenresService>().To<GenresService>().InRequestScope();
         }
     }
 }

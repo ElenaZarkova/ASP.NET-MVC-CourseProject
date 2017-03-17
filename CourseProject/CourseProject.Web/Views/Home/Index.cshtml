@@ -1,35 +1,73 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "BetterReads";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="banner">
+    <div class="container">
+        <div class="banner_desc">
+            <h1>BetterReads</h1>
+            <h2>Best place to find the perfect book.</h2>
+            <div class="button">
+                <a href="#" class="hvr-shutter-out-horizontal">Browse books</a>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="content_top">
+    <h3 class="m_1">Most Popular</h3>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="product-img">
+                    <a href="single.html">
+                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive text-center" alt="item4">
+                    </a>
+                </div>
 
-<h1>@ViewBag.Name</h1>
-<h1>@ViewBag.NameAndId</h1>
-<h2>Changed again...</h2>
+                <div class="shop-content">
+                    <h3><a href="single.html">East of Eden</a></h3>
+                    <div>John Steinbeck</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-img">
+                    <a href="single.html">
+                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive" alt="item4">
+                    </a>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                <div class="shop-content" style="height: 80px;">
+                    <h3><a href="single.html">Non-charac</a></h3>
+                    <div><a href="single.html" rel="tag">humour</a></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-img">
+                    <a href="single.html">
+                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive" alt="item4">
+                    </a>
+                </div>
+
+                <div class="shop-content" style="height: 80px;">
+                    <h3><a href="single.html">Non-charac</a></h3>
+                    <div><a href="single.html" rel="tag">humour</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="about-block-content">
+                <div class="border-add"></div>
+                <h4>About BetterReads</h4>
+                <p>BetterReads is the prefect place to browse books. It offers a variety of genres and allows you to add book to different categories depending on whether you've read it or not. It also helps you get in touch with other booklovers.</p>
+                <p>Join our awesome community today.</p>
+                <p> </p>
+            </div>
+        </div>
+        <div class="row">
+            <img src="~/Content/SiteImages/booksbanner.png" class="img-responsive" alt="" />
+
+        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
