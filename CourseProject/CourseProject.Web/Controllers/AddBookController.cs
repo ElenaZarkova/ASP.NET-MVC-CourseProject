@@ -12,16 +12,26 @@ using System.IO;
 
 namespace CourseProject.Web.Controllers
 {
-    [Authorize(Roles = RoleNames.Admin)]
+    [Authorize(Roles = "Admin")]
     public class AddBookController : Controller
     {
-        private readonly IBetterReadsData data;
         private readonly IBooksService booksService;
+        private readonly IGenresService genresService;
 
-        public AddBookController(IBetterReadsData data, IBooksService booksService)
+        public AddBookController(IBooksService booksService, IGenresService genresService)
         {
-            this.data = data;
+            if (booksService == null)
+            {
+                throw new ArgumentNullException("BooksService");
+            }
+
+            if (genresService == null)
+            {
+                throw new ArgumentNullException("GenresService");
+            }
+            
             this.booksService = booksService;
+            this.genresService = genresService;
         }
 
         public ActionResult Index()
@@ -91,7 +101,7 @@ namespace CourseProject.Web.Controllers
 
         private IEnumerable<SelectListItem> GetGenres()
         {
-            var genres = this.data.Genres.All.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
+            var genres = this.genresService.GetAllGenres().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
             return genres;
         }
     }

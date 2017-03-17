@@ -7,24 +7,23 @@ using CourseProject.Services.Contracts;
 
 namespace CourseProject.Services
 {
-    public class BooksService : IBooksService
+    public class GenresService : IGenresService
     {
         private readonly IBetterReadsData data;
 
-        public BooksService(IBetterReadsData data)
+        public GenresService(IBetterReadsData data)
         {
-            if(data == null)
+            if (data == null)
             {
                 throw new ArgumentNullException("Better reads data cannot be null.");
             }
 
             this.data = data;
         }
-        
-        public void AddBook(Book book)
+
+        public IEnumerable<Genre> GetAllGenres()
         {
-            this.data.Books.Add(book);
-            this.data.SaveChanges();
+            return this.data.Genres.All.ToList();
         }
     }
 }
