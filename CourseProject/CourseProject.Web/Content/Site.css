@@ -87,3 +87,15 @@ textarea {
     margin-top: 1em;
     margin-bottom: 2em;
 }
+
+.book-details-img{
+    height: 25em;
+}
+
+.single_top{
+  margin: 3em 0em 3em 3em;
+}
+
+.book-dropdown{
+    margin-top: 2em;
+}

@@ -1394,9 +1394,7 @@ select.item_Size {
 	  border-bottom: 1px solid #EFEFEF;
 }
 /*--single--*/
-.single_top {
-	margin:3em 0;
-}
+
 ul.back{
 	padding:0;
 	list-style:none;
@@ -1628,7 +1626,7 @@ span.color5 {
 }
 ul.single_social{
 	list-style: none;
-	width:88%;
+	width:100%;
 	margin: 0 auto;
 	padding:0;
 }
@@ -1643,7 +1641,7 @@ ul.single_social li a i {
 	  width: 58px;
 	  height: 53px;
 	  float: left;
-	  background: url(../images/img_sprite.png)no-repeat;
+	  background: url(./SiteImages/img_sprite.png)no-repeat;
 	  margin-right: 10px;
 }
 ul.single_social li a i.s_fb {
@@ -2981,9 +2979,7 @@ h2.m_3 {
 .content_box h6 {
   font-size: 0.8125em;
 }
-.single_top {
-  margin: 3em 0 0;
-}
+
 .about_left h1 {
   font-size:0.95em;
 }

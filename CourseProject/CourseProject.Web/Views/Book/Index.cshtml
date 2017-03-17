@@ -1,0 +1,38 @@
+﻿@model BookDetailsViewModel
+
+    <div class="container single_top">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-responsive book-details-img" src="~/Content/SiteImages/east-of-eden.jpg" alt="East-of-eden" />
+            </div>
+            <div class="col-md-9">
+                <h1>East of Eden</h1>
+                <h3>John Steinbeck</h3>
+                <p>Set in the rich farmland of California’s Salinas Valley, this sprawling and often brutal novel follows the intertwined 
+                destinies of two families—the Trasks and the Hamiltons—whose generations helplessly reenact the fall of Adam and Eve and 
+                the poisonous rivalry of Cain and Abel. Here Steinbeck created some of his most memorable characters and explored his 
+                most enduring themes: the mystery of identity; the inexplicability of love; and the murderous consequences of love’s absence.</p>
+                <div class="book-dropdown btn-group">
+                    <button type="button" class="btn btn-primary">Want to Read</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Want to Read</a></li>
+                        <li><a class="dropdown-item" href="#">Read</a></li>
+                        <li><a class="dropdown-item" href="#">CurrentlyReading</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="single_social_top">
+            <ul class="single_social">
+                <li><a href="#"> <i class="s_fb"> </i> <div class="social_desc">Share<br> on facebook</div><div class="clearfix"> </div></a></li>
+                <li><a href="#"> <i class="s_twt"> </i> <div class="social_desc">Tweet<br> this product</div><div class="clearfix"> </div></a></li>
+                <li><a href="#"> <i class="s_google"> </i><div class="social_desc">Google+<br> this product</div><div class="clearfix"> </div></a></li>
+                <li class="last"><a href="#"> <i class="s_email"> </i><div class="social_desc">Email<br> a Friend</div><div class="clearfix"> </div></a></li>
+            </ul>
+        </div>
+    </div>
+

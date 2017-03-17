@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace CourseProject.Models
 {
@@ -71,6 +72,15 @@ namespace CourseProject.Models
         {
             get { return this.ratings; }
             set { this.ratings = value; }
+        }
+
+        [NotMapped]
+        public double RatingCalculated
+        {
+            get
+            {
+                return this.Ratings.Count / this.Ratings.Sum(x => x.Value);
+            }
         }
     }
 }
