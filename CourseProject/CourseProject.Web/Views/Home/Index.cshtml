@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<BookViewModel>
+@{
     ViewBag.Title = "BetterReads";
 }
 
@@ -16,43 +17,22 @@
 <div class="content_top">
     <h3 class="m_1">Most Popular</h3>
     <div class="container">
-        <div class="row text-center">
-            <div class="col-md-3">
-                <div class="product-img">
-                    <a href="single.html">
-                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive text-center" alt="item4">
-                    </a>
-                </div>
+        <div class="text-center row">
+            @foreach (var book in Model)
+            {
+                <div class="col-md-3">
+                    <div class="product-img">
+                        <a href="single.html">
+                            <img src="@Url.Content($"~/Content/Images/{book.CoverFile}")" class="img-responsive text-center" alt="item4">
+                        </a>
+                    </div>
 
-                <div class="shop-content">
-                    <h3><a href="single.html">East of Eden</a></h3>
-                    <div>John Steinbeck</div>
+                    <div class="shop-content">
+                        <h3><a href="single.html">@book.Title</a></h3>
+                        <div>@book.Author</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-img">
-                    <a href="single.html">
-                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive" alt="item4">
-                    </a>
-                </div>
-
-                <div class="shop-content" style="height: 80px;">
-                    <h3><a href="single.html">Non-charac</a></h3>
-                    <div><a href="single.html" rel="tag">humour</a></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-img">
-                    <a href="single.html">
-                        <img src="~/Content/SiteImages/east-of-eden.jpg" class="img-responsive" alt="item4">
-                    </a>
-                </div>
-
-                <div class="shop-content" style="height: 80px;">
-                    <h3><a href="single.html">Non-charac</a></h3>
-                    <div><a href="single.html" rel="tag">humour</a></div>
-                </div>
-            </div>
+            }
         </div>
 
         <div class="row">
@@ -66,7 +46,6 @@
         </div>
         <div class="row">
             <img src="~/Content/SiteImages/booksbanner.png" class="img-responsive" alt="" />
-
         </div>
         <div class="clearfix"></div>
     </div>

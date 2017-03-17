@@ -78,7 +78,7 @@ namespace CourseProject.Web.Controllers
                 Description = bookModel.Description,
                 PublishedOn = bookModel.PublishedOn,
                 GenreId = bookModel.GenreId,
-                CoverFilePath = path
+                CoverFile = filename
             };
 
             return book;

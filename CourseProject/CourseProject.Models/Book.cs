@@ -43,7 +43,7 @@ namespace CourseProject.Models
         public DateTime PublishedOn { get; set; }
 
         [Required]
-        public string CoverFilePath { get; set; }
+        public string CoverFile { get; set; }
          
         public int GenreId { get; set; }
 

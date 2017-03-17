@@ -26,5 +26,15 @@ namespace CourseProject.Services
             this.data.Books.Add(book);
             this.data.SaveChanges();
         }
+
+        public IEnumerable<Book> GetHighestRatedBooks(int count)
+        {
+            var books = this.data.Books.All
+                .OrderByDescending(x => (double)x.Ratings.Count / x.Ratings.Sum(y => y.Value))
+                .Take(count)
+                .ToList();
+
+            return books;
+        }
     }
 }

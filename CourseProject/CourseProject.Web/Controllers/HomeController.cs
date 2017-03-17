@@ -7,27 +7,27 @@ using AutoMapper.QueryableExtensions;
 using CourseProject.Data.Contracts;
 using CourseProject.Web.Models;
 using CourseProject.Models;
+using CourseProject.Services.Contracts;
 
 namespace CourseProject.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBetterReadsData data;
+        private readonly IBooksService booksService;
 
-        public HomeController(IBetterReadsData data)
+        public HomeController(IBooksService booksService)
         {
-            this.data = data;
+            // TODO: Guard
+
+            this.booksService = booksService;
         }
 
         public ActionResult Index()
         {
-            //Genre genre = null;
-            //var genreviewModel = (GenreViewModel)AutoMapper.Mapper.Map(genre, typeof(Genre), typeof(GenreViewModel));
-            // var genreviewModel = AutoMapper.Mapper.Map<GenreViewModel>(genre);
-            var genreviewModel = this.data.Genres.All.ProjectTo<GenreViewModel>().FirstOrDefault();
-            this.ViewBag.Name = genreviewModel.Name;
-            this.ViewBag.NameAndId = genreviewModel.NameAndId;
-            return View();
+            // TODO: fix mapping
+            var books = this.booksService.GetHighestRatedBooks(8).ToList();
+            var mappedBooks = AutoMapper.Mapper.Map<IEnumerable<BookViewModel>>(books);
+            return View(mappedBooks);
         }
 
         public ActionResult About()
