@@ -27,6 +27,10 @@ namespace CourseProject.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ratings").Include(
+                      "~/Scripts/rating.js",
+                      "~/Scripts/Custom/initialize-rating.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-paper.min.css",
                       "~/Content/site.css",

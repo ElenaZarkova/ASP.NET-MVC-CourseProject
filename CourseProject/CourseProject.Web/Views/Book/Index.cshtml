@@ -3,7 +3,11 @@
     ViewBag.Title = Model.Title;
 }
 
-<div class="container single_top">
+@section styles{
+    <link rel="stylesheet" href="@Url.Content("~/Content/rating.css")" />
+}
+
+<div class="container single_top main-content">
     <div class="row">
         <div class="col-md-3">
             <img class="img-responsive book-details-img" src="@Url.Content($"~/Content/Images/{Model.CoverFile}")" alt="@Model.Title" />
@@ -14,6 +18,8 @@
             <p class="book-description">@Model.Description</p>
             <h5>@Model.GenreName</h5>
             <p>Published on: @Model.PublishedOn.ToShortDateString()</p>
+            @* TODO: Figure out mapper *@
+            @Html.Partial("_RatingPartial", new RatingViewModel() { RatingCalculated = Model.RatingCalculated, UserRating = Model.UserRating, Id = Model.Id })
             <p>Rating: @Model.RatingCalculated</p>
             <div class="book-dropdown btn-group">
                 <button type="button" class="btn btn-primary">Want to Read</button>
@@ -39,3 +45,6 @@
     </div>
 </div>
 
+@section scripts{
+    @Scripts.Render("~/bundles/ratings");
+}

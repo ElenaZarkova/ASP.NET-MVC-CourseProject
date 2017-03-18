@@ -13,6 +13,13 @@ namespace CourseProject.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // TODO: fix route
+            routes.MapRoute(
+               name: "Rate",
+               url: "book/rate",
+               defaults: new { controller = "Book", action = "Rate" }
+           );
+
             routes.MapRoute(
                name: "Book",
                url: "book/{id}",

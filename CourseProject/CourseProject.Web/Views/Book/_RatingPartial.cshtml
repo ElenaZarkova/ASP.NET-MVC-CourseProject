@@ -1,0 +1,12 @@
+﻿@model RatingViewModel
+
+<p class="text-danger" id="rating-error"></p>
+<div id="star-rating" data-checked="@Model.UserRating" data-id="@Model.Id">
+    <input type="radio" name="rating" class="rating" value="1" />
+    <input type="radio" name="rating" class="rating" value="2" />
+    <input type="radio" name="rating" class="rating" value="3" />
+    <input type="radio" name="rating" class="rating" value="4" />
+    <input type="radio" name="rating" class="rating" value="5" />
+</div>
+
+
