@@ -130,6 +130,10 @@ ul.footer-list li a{
 	line-height:2.5em;
 }
 
+.book-description{
+    margin-bottom: 2em;
+}
+
 /*Profile*/
 /* USER PROFILE PAGE */
 .card {

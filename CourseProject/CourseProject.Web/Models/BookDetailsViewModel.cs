@@ -20,12 +20,10 @@ namespace CourseProject.Web.Models
         public DateTime PublishedOn { get; set; }
 
         public string CoverFile { get; set; }
+        
+        public string GenreName { get; set; }
 
-        public int GenreId { get; set; }
-
-        public virtual Genre Genre { get; set; }
-
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
 
         public double RatingCalculated { get; }
     }

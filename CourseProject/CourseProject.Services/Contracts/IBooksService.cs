@@ -8,5 +8,7 @@ namespace CourseProject.Services.Contracts
         void AddBook(Book book);
 
         IEnumerable<Book> GetHighestRatedBooks(int count);
+
+        Book GetById(int id);
     }
 }

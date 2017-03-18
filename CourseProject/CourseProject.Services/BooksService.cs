@@ -4,6 +4,7 @@ using System.Linq;
 using CourseProject.Data.Contracts;
 using CourseProject.Models;
 using CourseProject.Services.Contracts;
+using System.Data.Entity;
 
 namespace CourseProject.Services
 {
@@ -35,6 +36,17 @@ namespace CourseProject.Services
                 .ToList();
 
             return books;
+        }
+
+        public Book GetById(int id)
+        {
+            var book = this.data.Books.All
+                .Where(x => x.Id == id)
+                .Include(x => x.Genre)
+                .Include(x => x.Ratings)
+                .FirstOrDefault();
+
+            return book;
         }
     }
 }

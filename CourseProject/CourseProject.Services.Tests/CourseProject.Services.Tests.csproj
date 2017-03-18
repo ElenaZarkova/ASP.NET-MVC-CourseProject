@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BooksServiceTests\AddBook_Should.cs" />
     <Compile Include="BooksServiceTests\Constructor_Should.cs" />
+    <Compile Include="BooksServiceTests\GetBookById_Should.cs" />
     <Compile Include="GenresServiceTests\Contructor_Should.cs" />
     <Compile Include="GenresServiceTests\GetAllGenres_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
