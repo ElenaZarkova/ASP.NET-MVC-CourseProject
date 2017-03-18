@@ -214,6 +214,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\AutoMapperModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -231,6 +232,8 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Mapping\IMapperAdapter.cs" />
+    <Compile Include="Mapping\MapperAdapter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddBookViewModel.cs" />
     <Compile Include="Models\BookDetailsViewModel.cs" />
@@ -248,10 +251,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom-styles.css" />
     <Content Include="Content\SiteImages\booksbanner.png" />
+    <Content Include="Content\SiteImages\profile-banner.jpg" />
     <Content Include="Content\SiteImages\east-of-eden.jpg" />
     <Content Include="Content\SiteImages\img_sprite.png" />
     <Content Include="Content\SiteImages\logo.png" />
     <Content Include="Content\SiteImages\open-book.jpg" />
+    <Content Include="Content\SiteImages\profile-icon.png" />
     <Content Include="Content\SiteImages\strip-blue.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
