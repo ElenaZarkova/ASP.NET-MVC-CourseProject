@@ -20,7 +20,7 @@ namespace CourseProject.Services.Tests.BooksServiceTests
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenDataIsNull()
         {
             // Act & Assert
-            Assert.That(() => new BooksService(null), Throws.ArgumentNullException.With.Message.Contains("Better reads data cannot be null."));
+            Assert.That(() => new BooksService(null), Throws.ArgumentNullException.With.Message.Contains("data"));
         }
 
         [Test]

@@ -16,7 +16,7 @@ namespace CourseProject.Web.Tests.Controllers.AddBookControllerTests
             var mockedGenresService = new Mock<IGenresService>();
 
             // Act & Assert
-            Assert.That(() => new AddBookController(null, mockedGenresService.Object), Throws.ArgumentNullException.With.Message.Contains("BooksService"));
+            Assert.That(() => new AddBookController(null, mockedGenresService.Object), Throws.ArgumentNullException.With.Message.Contains("booksService"));
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace CourseProject.Web.Tests.Controllers.AddBookControllerTests
             var mockedBooksService = new Mock<IBooksService>();
 
             // Act & Assert
-            Assert.That(() => new AddBookController(mockedBooksService.Object, null), Throws.ArgumentNullException.With.Message.Contains("GenresService"));
+            Assert.That(() => new AddBookController(mockedBooksService.Object, null), Throws.ArgumentNullException.With.Message.Contains("genresService"));
         }
 
         [Test]

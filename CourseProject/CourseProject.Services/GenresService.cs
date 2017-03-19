@@ -15,7 +15,7 @@ namespace CourseProject.Services
         {
             if (data == null)
             {
-                throw new ArgumentNullException("Better reads data cannot be null.");
+                throw new ArgumentNullException("data");
             }
 
             this.data = data;

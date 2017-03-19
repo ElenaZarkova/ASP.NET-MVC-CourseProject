@@ -22,12 +22,12 @@ namespace CourseProject.Web.Controllers
         {
             if (booksService == null)
             {
-                throw new ArgumentNullException("BooksService");
+                throw new ArgumentNullException("booksService");
             }
 
             if (genresService == null)
             {
-                throw new ArgumentNullException("GenresService");
+                throw new ArgumentNullException("genresService");
             }
             
             this.booksService = booksService;

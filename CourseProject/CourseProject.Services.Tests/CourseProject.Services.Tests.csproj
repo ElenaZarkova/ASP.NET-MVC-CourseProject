@@ -61,6 +61,8 @@
     <Compile Include="GenresServiceTests\Contructor_Should.cs" />
     <Compile Include="GenresServiceTests\GetAllGenres_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingsServiceTests\Constructor_Should.cs" />
+    <Compile Include="RatingsServiceTests\RateBook_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
