@@ -25,8 +25,14 @@ namespace CourseProject.Services
 
         public void RateBook(int bookId, string userId, int rate)
         {
+            // TODO: Should it check rate range ?
+
             var rating = this.data.Ratings.All.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefault();
-            if (rating == null)
+            if (rating != null)
+            {
+                rating.Value = rate;
+            }
+            else
             {
                 // TODO: should check if book and user in database ??
                 rating = new Rating()
@@ -36,10 +42,6 @@ namespace CourseProject.Services
                     Value = rate
                 };
                 this.data.Ratings.Add(rating);
-            }
-            else
-            {
-                rating.Value = rate;
             }
 
             this.data.SaveChanges();
