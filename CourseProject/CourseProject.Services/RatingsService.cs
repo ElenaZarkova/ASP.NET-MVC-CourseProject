@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CourseProject.Data.Contracts;
+using CourseProject.Models;
+using CourseProject.Services.Contracts;
+
+namespace CourseProject.Services
+{
+    public class RatingsService : IRatingsService
+    {
+        private readonly IBetterReadsData data;
+
+        public RatingsService(IBetterReadsData data)
+        {
+            if (data == null)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            this.data = data;
+        }
+
+        public void RateBook(int bookId, string userId, int rate)
+        {
+            var rating = this.data.Ratings.All.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefault();
+            if (rating == null)
+            {
+                // TODO: should check if book and user in database ??
+                rating = new Rating()
+                {
+                    BookId = bookId,
+                    UserId = userId,
+                    Value = rate
+                };
+                this.data.Ratings.Add(rating);
+            }
+            else
+            {
+                rating.Value = rate;
+            }
+
+            this.data.SaveChanges();
+        }
+    }
+}

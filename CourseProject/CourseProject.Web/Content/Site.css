@@ -135,6 +135,22 @@ ul.footer-list li a{
     margin-bottom: 2em;
 }
 
+.stars{
+    display: inline-block;
+    float:left;
+    margin: 0 0.5em;
+}
+
+.rating-info{
+    padding: 0;
+    margin: 0;
+    line-height: 1.2em;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
 /*Profile*/
 /* USER PROFILE PAGE */
 .card {

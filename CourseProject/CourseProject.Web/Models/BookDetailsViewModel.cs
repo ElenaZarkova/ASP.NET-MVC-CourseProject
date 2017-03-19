@@ -25,7 +25,7 @@ namespace CourseProject.Web.Models
 
         public ICollection<Rating> Ratings { get; set; }
 
-        public double RatingCalculated { get; }
+        public double RatingCalculated { get; set; }
 
         public int UserRating { get; set; }
     }

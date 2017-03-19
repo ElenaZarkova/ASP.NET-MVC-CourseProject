@@ -79,7 +79,7 @@ namespace CourseProject.Models
         {
             get
             {
-                return this.Ratings.Count / this.Ratings.Sum(x => x.Value);
+                return this.Ratings.Sum(x => x.Value) / this.Ratings.Count;
             }
         }
     }

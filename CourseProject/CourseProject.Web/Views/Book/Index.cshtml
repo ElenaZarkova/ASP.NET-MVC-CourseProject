@@ -20,7 +20,6 @@
             <p>Published on: @Model.PublishedOn.ToShortDateString()</p>
             @* TODO: Figure out mapper *@
             @Html.Partial("_RatingPartial", new RatingViewModel() { RatingCalculated = Model.RatingCalculated, UserRating = Model.UserRating, Id = Model.Id })
-            <p>Rating: @Model.RatingCalculated</p>
             <div class="book-dropdown btn-group">
                 <button type="button" class="btn btn-primary">Want to Read</button>
                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

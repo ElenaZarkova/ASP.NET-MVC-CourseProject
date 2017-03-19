@@ -10,5 +10,7 @@ namespace CourseProject.Services.Contracts
         IEnumerable<Book> GetHighestRatedBooks(int count);
 
         Book GetById(int id);
+
+        double GetBookRating(int id);
     }
 }

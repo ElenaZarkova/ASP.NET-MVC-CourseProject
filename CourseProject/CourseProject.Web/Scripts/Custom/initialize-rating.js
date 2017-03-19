@@ -10,6 +10,7 @@
             data: { rate: vote, id: id },
             success: function (data) {
                 $("input[name=rating][value=" + vote + "]").attr('checked', 'checked');
+                $("#rating-calc").text(data.rating);
             },
             error: function(err){
                 $("#rating-error").text(err.message);

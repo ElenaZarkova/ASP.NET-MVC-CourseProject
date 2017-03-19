@@ -14,14 +14,14 @@ namespace CourseProject.Services
 
         public BooksService(IBetterReadsData data)
         {
-            if(data == null)
+            if (data == null)
             {
                 throw new ArgumentNullException("Better reads data cannot be null.");
             }
 
             this.data = data;
         }
-        
+
         public void AddBook(Book book)
         {
             this.data.Books.Add(book);
@@ -43,10 +43,27 @@ namespace CourseProject.Services
             var book = this.data.Books.All
                 .Where(x => x.Id == id)
                 .Include(x => x.Genre)
-                .Include(x => x.Ratings)
                 .FirstOrDefault();
 
             return book;
+        }
+
+        public double GetBookRating(int id)
+        {
+            // TODO: should it be in one query
+            var book = this.data.Books.All
+                .Where(x => x.Id == id)
+                .Include(x=>x.Ratings)
+                .FirstOrDefault();
+
+            if(book != null)
+            {
+                return book.RatingCalculated;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
