@@ -159,6 +159,26 @@ ul.footer-list li a{
     display: none;
 }
 
+.row1{
+	outline:none;
+	padding: 20px;
+}
+
+.genre-box{
+    display: block;
+}
+
+.genres-bg{
+	margin-top: 10px;
+	background: #ECECEC;
+	padding: 10px 20px;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	font-size:16px;
+}
+}
+
 /*Profile*/
 /* USER PROFILE PAGE */
 .card {

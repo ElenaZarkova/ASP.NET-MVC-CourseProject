@@ -884,13 +884,8 @@ ul.footer_social li a i:hover{
 .sky-form {
 	margin-top: -10px;
 }
-.row1{
-	outline:none;
-	padding: 20px;
-	overflow: auto;
-	height: 200px;
-}
-.sky-form.col.col-4 ul {
+
+.sky-formvcol-4 ul {
 	padding: 0;
 	list-style: none;
 }

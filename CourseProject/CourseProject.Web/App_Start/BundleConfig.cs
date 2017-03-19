@@ -34,7 +34,8 @@ namespace CourseProject.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-paper.min.css",
                       "~/Content/site.css",
-                      "~/Content/style.css"));
+                      "~/Content/style.css",
+                      "~/Content/checkboxes.css"));
         }
     }
 }

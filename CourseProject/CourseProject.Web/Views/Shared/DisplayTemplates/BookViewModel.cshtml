@@ -1,14 +1,14 @@
 ﻿@model BookViewModel
-<div class="col-md-3">
-    <div class="product-img">
-        <a href="~/book/@Model.Id">
-            <img src="@Url.Content($"~/Content/Images/{Model.CoverFile}")" class="img-responsive text-center" alt="@Model.Title">
-        </a>
-    </div>
 
-    <div class="shop-content">
-        <h3><a href="~/book/@Model.Id">@Model.Title</a></h3>
-        <div>@Model.Author</div>
-    </div>
+<div class="product-img">
+    <a href="~/book/@Model.Id">
+        <img src="@Url.Content($"~/Content/Images/{Model.CoverFile}")" class="img-responsive text-center" alt="@Model.Title">
+    </a>
 </div>
+
+<div class="shop-content">
+    <h3><a href="~/book/@Model.Id">@Model.Title</a></h3>
+    <div>@Model.Author</div>
+</div>
+
 

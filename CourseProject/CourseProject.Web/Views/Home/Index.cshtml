@@ -20,7 +20,9 @@
         <div class="text-center row">
             @foreach (var book in Model)
             {
-                @Html.DisplayFor( _ => book)
+                <div class="col-md-3">
+                    @Html.DisplayFor(_ => book)
+                </div>
             }
         </div>
 

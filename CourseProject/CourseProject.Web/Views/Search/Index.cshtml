@@ -1,0 +1,65 @@
+﻿@model SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container main-content">
+    <div class="women_main">
+        <div class="w_content">
+            <div class="women">
+                <a href="#"><h4>Results - <span>4449 books</span> </h4></a>
+                <ul class="w_nav">
+                    <li>Sort : </li>
+                    <li><a class="active" href="#">popular</a></li> |
+                    <li><a href="#">new </a></li> |
+                    <li><a href="#">discount</a></li> |
+                    <li><a href="#">price: Low High </a></li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- start sidebar -->
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                <section>
+                    <h4 class="genres-bg">Genres</h4>
+                    <div class="row1">
+                        <div class="checkbox-new">
+                            <label>
+                                <input type="checkbox" name="genre" value="">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Option
+                            </label>
+                        </div>
+                        <div class="checkbox-new">
+                            <label>
+                                <input type="checkbox" name="genre" value="">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Option
+                            </label>
+                        </div>
+                        <div class="checkbox-new">
+                            <label>
+                                <input type="checkbox" name="genre" value="">
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                Option
+                            </label>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+        <div class="col-md-9 text-center">
+            @foreach (var book in Model.Books)
+            {
+                <div class="col-md-4">
+                    @Html.DisplayFor(_ => book)
+                </div>
+            }
+        </div>
+    </div>
+    <div></div>
