@@ -20,18 +20,7 @@
         <div class="text-center row">
             @foreach (var book in Model)
             {
-                <div class="col-md-3">
-                    <div class="product-img">
-                        <a href="~/book/@book.Id">
-                            <img src="@Url.Content($"~/Content/Images/{book.CoverFile}")" class="img-responsive text-center" alt="item4">
-                        </a>
-                    </div>
-
-                    <div class="shop-content">
-                        <h3><a href="~/book/@book.Id">@book.Title</a></h3>
-                        <div>@book.Author</div>
-                    </div>
-                </div>
+                @Html.DisplayFor( _ => book)
             }
         </div>
 
