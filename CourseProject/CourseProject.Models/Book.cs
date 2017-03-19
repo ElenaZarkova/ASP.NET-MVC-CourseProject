@@ -74,8 +74,9 @@ namespace CourseProject.Models
             set { this.ratings = value; }
         }
 
+        // Virtual so that it can be tested
         [NotMapped]
-        public double RatingCalculated
+        public virtual double RatingCalculated
         {
             get
             {

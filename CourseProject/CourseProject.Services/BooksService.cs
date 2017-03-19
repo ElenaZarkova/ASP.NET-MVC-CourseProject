@@ -31,7 +31,7 @@ namespace CourseProject.Services
         public IEnumerable<Book> GetHighestRatedBooks(int count)
         {
             var books = this.data.Books.All
-                .OrderByDescending(x => (double)x.Ratings.Count / x.Ratings.Sum(y => y.Value))
+                .OrderByDescending(x => x.Ratings.Sum(y => y.Value) / (double)x.Ratings.Count)
                 .Take(count)
                 .ToList();
 
@@ -50,7 +50,7 @@ namespace CourseProject.Services
 
         public double GetBookRating(int id)
         {
-            // TODO: should it be in one query
+            // TODO: should it be in one query ??
             var book = this.data.Books.All
                 .Where(x => x.Id == id)
                 .Include(x=>x.Ratings)
