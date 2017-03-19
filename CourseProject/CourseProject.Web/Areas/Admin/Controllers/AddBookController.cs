@@ -9,8 +9,9 @@ using CourseProject.Web.Models;
 using CourseProject.Data.Contracts;
 using CourseProject.Services.Contracts;
 using System.IO;
+using CourseProject.Web.Areas.Admin.Models;
 
-namespace CourseProject.Web.Controllers
+namespace CourseProject.Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AddBookController : Controller

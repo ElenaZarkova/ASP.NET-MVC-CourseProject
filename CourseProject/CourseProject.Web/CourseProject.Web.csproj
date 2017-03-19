@@ -219,8 +219,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddBookController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AddBookController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -235,7 +236,7 @@
     <Compile Include="Mapping\IMapperAdapter.cs" />
     <Compile Include="Mapping\MapperAdapter.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddBookViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AddBookViewModel.cs" />
     <Compile Include="Models\BookDetailsViewModel.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\GenreViewModel.cs" />
@@ -317,6 +318,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\mvc-courseproject - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mvc-courseproject - Web Deploy.pubxml" />
     <Content Include="Properties\PublishProfiles\mvc-courseproject.PublishSettings" />
@@ -375,13 +378,14 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
-    <Content Include="Views\AddBook\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AddBook\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\_RatingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>

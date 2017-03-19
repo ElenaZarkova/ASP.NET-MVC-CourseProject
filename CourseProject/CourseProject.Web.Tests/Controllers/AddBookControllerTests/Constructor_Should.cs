@@ -3,6 +3,7 @@ using NUnit.Framework;
 using CourseProject.Web.Controllers;
 using CourseProject.Services.Contracts;
 using CourseProject.Data.Contracts;
+using CourseProject.Web.Areas.Admin.Controllers;
 
 namespace CourseProject.Web.Tests.Controllers.AddBookControllerTests
 {

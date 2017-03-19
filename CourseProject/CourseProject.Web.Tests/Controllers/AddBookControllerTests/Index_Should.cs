@@ -11,6 +11,8 @@ using CourseProject.Data.Contracts;
 using CourseProject.Models;
 using System.Web.Mvc;
 using CourseProject.Web.Models;
+using CourseProject.Web.Areas.Admin.Controllers;
+using CourseProject.Web.Areas.Admin.Models;
 
 namespace CourseProject.Web.Tests.Controllers.AddBookControllerTests
 {

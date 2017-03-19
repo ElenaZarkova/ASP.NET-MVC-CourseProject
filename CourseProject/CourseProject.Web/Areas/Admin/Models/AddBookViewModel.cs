@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CourseProject.Web.Models
+namespace CourseProject.Web.Areas.Admin.Models
 {
     public class AddBookViewModel
     {
