@@ -135,10 +135,14 @@ ul.footer-list li a{
     margin-bottom: 2em;
 }
 
+.rating-block{
+    margin: 0 0.5em;
+}
+
 .stars{
     display: inline-block;
     float:left;
-    margin: 0 0.5em;
+    margin-right: 0.5em;
 }
 
 .rating-info{
@@ -149,6 +153,10 @@ ul.footer-list li a{
 
 .inline-block{
     display: inline-block;
+}
+
+.display-none{
+    display: none;
 }
 
 /*Profile*/
