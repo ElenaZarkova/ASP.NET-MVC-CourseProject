@@ -6,73 +6,76 @@
 <div class="container main-content">
     <!-- start sidebar -->
     <div class="row">
-        @using (Ajax.BeginForm("SearchBooks",new AjaxOptions()
+        @using (Ajax.BeginForm("SearchBooks", null,
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "search-results",
+                InsertionMode = InsertionMode.Replace
+            },
+            new { id = "search-form" }))
         {
-        HttpMethod = "GET",
-        UpdateTargetId = "search-results",
-        InsertionMode = InsertionMode.Replace
-        }))
-        {
-        <div class="form-group">       
-                <input type="text" name="SearchWord" class = "form-control inline-block" placeholder = "Search" />
-                 @*@Html.TextBoxFor(m => m.submitModel.SearchWord, new { @class = "form-control", placeholder = "Search" })*@
+            <div class="form-group">
+                <input type="text" name="SearchWord" class="form-control inline-block" placeholder="Search" />
+                @*@Html.TextBoxFor(m => m.submitModel.SearchWord, new { @class = "form-control", placeholder = "Search" })*@
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-        </div>
-
-        <ul class="inline-list">
-            <li>Sort : </li>
-            <li>               
-                <input id="sort1" type="radio" name="SortBy" value="title" class="display-none">
-                <label for="sort1" class="cursor-pointer">Title</label>
-            </li> |
-            <li>
-                <input id="sort2" type="radio" name="SortBy" value="author" class="display-none">
-                <label for="sort2" class="cursor-pointer">Author</label>
-            </li> |
-            <li>
-                <input id="sort3" type="radio" name="SortBy" value="year" class="display-none">
-                <label for="sort3" class="cursor-pointer">Year</label>
-            </li>
-            <div class="clear"></div>
-        </ul>
-
-        <div class="col-md-3">
-            <div>
-                <section>
-                    <h4 class="genres-bg">Genres</h4>
-                    <div class="row1">
-                        @foreach (var genre in Model.Genres)
-                        {
-                        <div class="checkbox-new">
-                            <label>
-                                <input type="checkbox" name="ChosenGenresIds" value="@genre.Id">
-                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                @genre.Name
-                            </label>
-                        </div>
-                        }
-                        <div class="checkbox-new">
-                            <label>
-                                <input type="checkbox" name="genre" value="">
-                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                Option
-                            </label>
-                        </div>
-                        <div class="checkbox-new">
-                            <label>
-                                <input type="checkbox" name="genre" value="">
-                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                Option
-                            </label>
-                        </div>
-                    </div>
-                </section>
             </div>
-        </div>
+
+            <ul class="inline-list">
+                <li>Sort : </li>
+                <li>
+                    <input id="sort1" type="radio" name="SortBy" value="title" class="display-none">
+                    <label for="sort1" class="cursor-pointer">Title</label>
+                </li> |
+                <li>
+                    <input id="sort2" type="radio" name="SortBy" value="author" class="display-none">
+                    <label for="sort2" class="cursor-pointer">Author</label>
+                </li> |
+                <li>
+                    <input id="sort3" type="radio" name="SortBy" value="year" class="display-none">
+                    <label for="sort3" class="cursor-pointer">Year</label>
+                </li>
+                <div class="clear"></div>
+            </ul>
+
+            <div class="col-md-3">
+                <div>
+                    <section>
+                        <h4 class="genres-bg">Genres</h4>
+                        <div class="row1">
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <div class="checkbox-new">
+                                    <label>
+                                        <input type="checkbox" name="ChosenGenresIds" value="@genre.Id">
+                                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                        @genre.Name
+                                    </label>
+                                </div>
+                            }
+                            <div class="checkbox-new">
+                                <label>
+                                    <input type="checkbox" name="genre" value="">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Option
+                                </label>
+                            </div>
+                            <div class="checkbox-new">
+                                <label>
+                                    <input type="checkbox" name="genre" value="">
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    Option
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         }
         <div id="search-results" class="col-md-9">
             @Html.Action("SearchBooks");
         </div>
+      
     </div>
 </div>
 

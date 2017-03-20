@@ -13,6 +13,8 @@ namespace CourseProject.Services.Contracts
 
         double GetBookRating(int id);
 
-        IEnumerable<Book> SearchBooks(string searchWord, string orderProperty, IEnumerable<int> genreIds, int page = 1, int numberOfPages = 9);
+        IEnumerable<Book> SearchBooks(string searchWord, IEnumerable<int> genreIds, string orderProperty, int page = 1, int numberOfPages = 9);
+
+        int GetBooksCount(string searchWord, IEnumerable<int> genreIds);
     }
 }

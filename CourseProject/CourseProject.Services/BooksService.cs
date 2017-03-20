@@ -53,10 +53,10 @@ namespace CourseProject.Services
             // TODO: should it be in one query ??
             var book = this.data.Books.All
                 .Where(x => x.Id == id)
-                .Include(x=>x.Ratings)
+                .Include(x => x.Ratings)
                 .FirstOrDefault();
 
-            if(book != null)
+            if (book != null)
             {
                 return book.RatingCalculated;
             }
@@ -66,27 +66,17 @@ namespace CourseProject.Services
             }
         }
 
-        public IEnumerable<Book> SearchBooks(string searchWord, string orderProperty, IEnumerable<int> genreIds, int page = 1, int booksPerPage = 9)
+        public IEnumerable<Book> SearchBooks(string searchWord, IEnumerable<int> genreIds, string orderProperty, int page = 1, int booksPerPage = 9)
         {
             var skip = (page - 1) * booksPerPage;
 
-            var books = this.data.Books.All;
-
-            if(searchWord != null)
-            {
-                books = books.Where(x => x.Title.Contains(searchWord) || x.Author.Contains(searchWord));
-            }
-
-            if(genreIds != null && genreIds.Any())
-            {
-                books = books.Where(x => genreIds.Contains(x.GenreId));
-            }
+            var books = this.BuildFilterQuery(searchWord, genreIds);
 
             orderProperty = orderProperty == null ? string.Empty : orderProperty.ToLower();
             switch (orderProperty)
             {
-                case "author": books = books.OrderBy(x => x.Author); break; 
-                case "year": books = books.OrderByDescending(x => x.PublishedOn.Year); break; 
+                case "author": books = books.OrderBy(x => x.Author); break;
+                case "year": books = books.OrderByDescending(x => x.PublishedOn.Year); break;
                 default: books = books.OrderBy(x => x.Title); break;
             }
 
@@ -96,6 +86,29 @@ namespace CourseProject.Services
                 .ToList();
 
             return resultBooks;
+        }
+
+        public int GetBooksCount(string searchWord, IEnumerable<int> genreIds)
+        {
+            var books = this.BuildFilterQuery(searchWord, genreIds);
+            return books.Count();
+        }
+
+        private IQueryable<Book> BuildFilterQuery(string searchWord, IEnumerable<int> genreIds)
+        {
+            var books = this.data.Books.All;
+
+            if (searchWord != null)
+            {
+                books = books.Where(x => x.Title.Contains(searchWord) || x.Author.Contains(searchWord));
+            }
+
+            if (genreIds != null && genreIds.Any())
+            {
+                books = books.Where(x => genreIds.Contains(x.GenreId));
+            }
+
+            return books;
         }
     }
 }

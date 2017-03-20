@@ -32,19 +32,28 @@ namespace CourseProject.Web.Controllers
 
             return View(model);
         }
-
-        public PartialViewResult SearchBooks(SearchSubmitModel submitModel)
+        
+        public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page)
         {
-            bool modelIsNull = submitModel.SearchWord == null && submitModel.ChosenGenresIds == null && submitModel.SortBy == null;
-            if(modelIsNull)
-            {
-                var books = mapper.Map<IEnumerable<BookViewModel>>(this.booksService.GetHighestRatedBooks(9).ToList());
-                return this.PartialView("_ResultsPartial", books);
-            }
+            //bool modelIsNull = submitModel.SearchWord == null && submitModel.ChosenGenresIds == null && submitModel.SortBy == null;
+            //if(modelIsNull)
+            //{
+            //    var books = mapper.Map<IEnumerable<BookViewModel>>(this.booksService.GetHighestRatedBooks(9).ToList());
+            //    return this.PartialView("_ResultsPartial", books);
+            //}
+            int actualPage = page ?? 1;
+            int booksPerPage = 3;
+            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, actualPage, booksPerPage);
+            var count = this.booksService.GetBooksCount(submitModel.SearchWord, submitModel.ChosenGenresIds);
 
-            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.SortBy, submitModel.ChosenGenresIds);
-            var mappedResult = mapper.Map<IEnumerable<BookViewModel>>(result);
-            return this.PartialView("_ResultsPartial", mappedResult);
+            var resultViewModel = new SearchResultsViewModel();
+            resultViewModel.BooksCount = count;
+            resultViewModel.SubmitModel = submitModel;
+            resultViewModel.Pages = (int)Math.Ceiling((double)count / booksPerPage);
+
+            resultViewModel.Books = mapper.Map<IEnumerable<BookViewModel>>(result);
+
+            return this.PartialView("_ResultsPartial", resultViewModel);
         }
     }
 }

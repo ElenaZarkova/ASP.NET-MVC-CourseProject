@@ -243,6 +243,7 @@
     <Compile Include="Models\GenreViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RatingViewModel.cs" />
+    <Compile Include="Models\SearchResultsViewModel.cs" />
     <Compile Include="Models\SearchSubmitModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
