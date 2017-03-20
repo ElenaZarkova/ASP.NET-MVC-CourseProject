@@ -8,11 +8,11 @@ using CourseProject.Services.Contracts;
 
 namespace CourseProject.Services
 {
-    public class UserService : IUsersService
+    public class UsersService : IUsersService
     {
         private readonly IBetterReadsData data;
 
-        public UserService(IBetterReadsData data)
+        public UsersService(IBetterReadsData data)
         {
             if (data == null)
             {

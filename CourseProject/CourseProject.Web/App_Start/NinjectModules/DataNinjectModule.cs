@@ -22,7 +22,7 @@ namespace CourseProject.Web.App_Start.NinjectModules
             this.Bind<IBooksService>().To<BooksService>().InRequestScope();
             this.Bind<IGenresService>().To<GenresService>().InRequestScope();
             this.Bind<IRatingsService>().To<RatingsService>().InRequestScope();
-            this.Bind<IUsersService>().To<UserService>().InRequestScope();
+            this.Bind<IUsersService>().To<UsersService>().InRequestScope();
         }
     }
 }

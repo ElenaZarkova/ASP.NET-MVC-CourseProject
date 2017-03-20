@@ -34,6 +34,22 @@
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -43,6 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,15 +73,20 @@
     <Compile Include="BooksServiceTests\Constructor_Should.cs" />
     <Compile Include="BooksServiceTests\GetBookById_Should.cs" />
     <Compile Include="BooksServiceTests\GetBookRating_Should.cs" />
+    <Compile Include="BooksServiceTests\GetBooksCount_Should.cs" />
     <Compile Include="BooksServiceTests\GetHighestRatedBooks_Should.cs" />
     <Compile Include="BooksServiceTests\Mocks\BookMockedRating.cs" />
+    <Compile Include="BooksServiceTests\SearchBooks_Should.cs" />
     <Compile Include="GenresServiceTests\Contructor_Should.cs" />
     <Compile Include="GenresServiceTests\GetAllGenres_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingsServiceTests\Constructor_Should.cs" />
     <Compile Include="RatingsServiceTests\RateBook_Should.cs" />
+    <Compile Include="UsersServiceTests\CheckIfUserExists_Should.cs" />
+    <Compile Include="UsersServiceTests\Constructor_Should.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
