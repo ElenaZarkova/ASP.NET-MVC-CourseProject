@@ -8,16 +8,17 @@ using CourseProject.Web.Mapping;
 
 namespace CourseProject.Web.Models
 {
-    public class GenreViewModel : IMapFrom<Genre>, IHaveCustomMappings
+    public class GenreViewModel : IMapFrom<Genre> //, IHaveCustomMappings
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
-        public string NameAndId { get; set; }
+        //public string NameAndId { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression config)
-        {
-            config.CreateMap<Genre, GenreViewModel>()
-                .ForMember(x => x.NameAndId, opt => opt.MapFrom(x => x.Name + " " + x.Id));
-        }
+        //public void CreateMappings(IMapperConfigurationExpression config)
+        //{
+        //    config.CreateMap<Genre, GenreViewModel>()
+        //        .ForMember(x => x.NameAndId, opt => opt.MapFrom(x => x.Name + " " + x.Id));
+        //}
     }
 }

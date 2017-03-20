@@ -8,10 +8,8 @@ namespace CourseProject.Web.Models
 {
     public class SearchViewModel
     {
-        public IEnumerable<SelectListItem> Genres { get; set; }
-
-        public SearchSubmitModel submitModel { get; set; }
-
+        public IEnumerable<GenreViewModel> Genres { get; set; }
+        
         public IEnumerable<BookViewModel> Books { get; set; }
     }
 }

@@ -1,1 +1,9 @@
-﻿
+﻿@model IEnumerable<BookViewModel>
+
+<div>Results: 123 books</div>
+@foreach (var book in Model)
+{
+    <div class="col-md-4 text-center">
+        @Html.DisplayFor(_ => book)
+    </div>
+}
