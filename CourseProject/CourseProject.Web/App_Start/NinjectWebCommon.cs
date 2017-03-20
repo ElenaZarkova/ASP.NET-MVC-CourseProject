@@ -11,6 +11,8 @@ namespace CourseProject.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using NinjectModules;
+    using Microsoft.AspNet.SignalR;
+    using Hubs;
 
     public static class NinjectWebCommon 
     {
@@ -47,6 +49,7 @@ namespace CourseProject.Web.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                RegisterWithSignalr(kernel);
                 return kernel;
             }
             catch
@@ -64,6 +67,12 @@ namespace CourseProject.Web.App_Start
         {
             kernel.Load(new DataNinjectModule());
             kernel.Load(new AutoMapperModule());
-        }        
+        }
+
+        private static void RegisterWithSignalr(IKernel kernel)
+        {
+            kernel.Bind<ChatHub>().ToSelf();
+            GlobalHost.DependencyResolver = new NinjectSignalRDependencyResolver(kernel);
+        }
     }
 }
