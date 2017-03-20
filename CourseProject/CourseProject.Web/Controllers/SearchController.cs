@@ -42,7 +42,9 @@ namespace CourseProject.Web.Controllers
                 return this.PartialView("_ResultsPartial", books);
             }
 
-            return this.PartialView("_ResultsPartial", new List<BookViewModel>());
+            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.SortBy, submitModel.ChosenGenresIds);
+            var mappedResult = mapper.Map<IEnumerable<BookViewModel>>(result);
+            return this.PartialView("_ResultsPartial", mappedResult);
         }
     }
 }

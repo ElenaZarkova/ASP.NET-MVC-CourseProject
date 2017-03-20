@@ -65,5 +65,37 @@ namespace CourseProject.Services
                 return 0;
             }
         }
+
+        public IEnumerable<Book> SearchBooks(string searchWord, string orderProperty, IEnumerable<int> genreIds, int page = 1, int booksPerPage = 9)
+        {
+            var skip = (page - 1) * booksPerPage;
+
+            var books = this.data.Books.All;
+
+            if(searchWord != null)
+            {
+                books = books.Where(x => x.Title.Contains(searchWord) || x.Author.Contains(searchWord));
+            }
+
+            if(genreIds != null && genreIds.Any())
+            {
+                books = books.Where(x => genreIds.Contains(x.GenreId));
+            }
+
+            orderProperty = orderProperty == null ? string.Empty : orderProperty.ToLower();
+            switch (orderProperty)
+            {
+                case "author": books = books.OrderBy(x => x.Author); break; 
+                case "year": books = books.OrderByDescending(x => x.PublishedOn.Year); break; 
+                default: books = books.OrderBy(x => x.Title); break;
+            }
+
+            var resultBooks = books
+                .Skip(skip)
+                .Take(booksPerPage)
+                .ToList();
+
+            return resultBooks;
+        }
     }
 }
