@@ -2,20 +2,20 @@
 
     var chatHub = $.connection.chatHub;
     $.connection.hub.start().done();
-    
+
     chatHub.client.chatWith = chatWith;
     chatHub.client.showUsernameError = showUsernameError;
     chatHub.client.addChatMessage = addChatMessage;
 
-    $("#submit-user").click(function (ev) {
-        var username = $("#username").val();
+    $('#submit-user').click(function (ev) {
+        var username = $('#username').val();
         console.log(username);
         chatHub.server.checkIfUserExists(username);
     });
 
-    $("#msg-btn").click(function (ev) {
-        var message = $("#msg-input").val();
-        var username = $("#chat-panel").attr("data-username");
+    $('#msg-btn').click(function (ev) {
+        var message = $('#msg-input').val();
+        var username = $('#chat-panel').attr('data-username');
         chatHub.server.sendMessage(username, message);
 
         // do sth
@@ -27,32 +27,37 @@
         '</div>'
         '</li>';
 
-        $("#messages").append(element);
+        $('#messages').append(element);
     })
 
 });
 
 function chatWith(username) {
-    $("#error-msg").text("");
+    $('#error-msg').text('');
 
-    const chatPanel = $("#chat-panel");
-    chatPanel.removeClass("display-none");
-    chatPanel.attr("data-username", username);
+    const chatPanel = $('#chat-panel');
+    chatPanel.removeClass('display-none');
+    chatPanel.attr('data-username', username);
 }
 
 function showUsernameError() {
-    const errorMsg = $("#error-msg");
-    errorMsg.text("There is no user with this username.");
+    const errorMsg = $('#error-msg');
+    errorMsg.text('There is no user with this username.');
 }
 
 function addChatMessage(username, message) {
-    const element = '<li class="left clearfix">' +
-            '<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span>' +
-            '<div class="chat-body clearfix">' +
-                `<div class="header"><strong class="primary-font">${username}</strong></div>` +
-                `<p>${message}</p>` +
-            '</div>' +
-        '</li>';
+    const currentUsername = $('#chat-panel').attr('data-username');
+    if (username === currentUsername) {
 
-    $("#messages").append(element);
+        const element = '<li class="left clearfix">' +
+                '<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span>' +
+                '<div class="chat-body clearfix">' +
+                    `<div class="header"><strong class="primary-font">${username}</strong></div>` +
+                    `<p>${message}</p>` +
+                '</div>' +
+            '</li>';
+
+        $('#messages').append(element);
+
+    }
 }
