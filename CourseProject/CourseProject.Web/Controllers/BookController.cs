@@ -13,15 +13,27 @@ namespace CourseProject.Web.Controllers
     public class BookController : Controller
     {
         private readonly IBooksService booksService;
-        private readonly IRatingsService ratingService;
+        private readonly IRatingsService ratingsService;
         private readonly IMapperAdapter mapper;
 
-        public BookController(IBooksService booksService,IRatingsService ratingService, IMapperAdapter mapper)
+        public BookController(IBooksService booksService,IRatingsService ratingsService, IMapperAdapter mapper)
         {
-            // TODO: Gaurd
+            if(booksService == null)
+            {
+                throw new ArgumentNullException("booksService");
+            }
 
+            if (ratingsService == null)
+            {
+                throw new ArgumentNullException("ratingsService");
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException("mapper");
+            }
             this.booksService = booksService;
-            this.ratingService = ratingService;
+            this.ratingsService = ratingsService;
             this.mapper = mapper;
         }
 
@@ -50,7 +62,7 @@ namespace CourseProject.Web.Controllers
             ratingModel.RatingCalculated = rating;
 
             string userId = this.User.Identity.GetUserId();
-            var userRating = this.ratingService.GetRating(id, userId);
+            var userRating = this.ratingsService.GetRating(id, userId);
 
             ratingModel.UserRating = userRating;
 
@@ -60,7 +72,7 @@ namespace CourseProject.Web.Controllers
         public JsonResult Rate(int id, int rate)
         {
             // TODO: error handling
-            this.ratingService.RateBook(id, this.User.Identity.GetUserId(), rate);
+            this.ratingsService.RateBook(id, this.User.Identity.GetUserId(), rate);
             var rating = this.booksService.GetBookRating(id);
             return Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
         }

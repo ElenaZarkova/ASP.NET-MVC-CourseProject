@@ -346,6 +346,7 @@
     <Content Include="Scripts\Custom\chat.js" />
     <Content Include="Scripts\Custom\datepicker.js" />
     <Content Include="Scripts\Custom\initialize-rating.js" />
+    <Content Include="Scripts\Custom\search-submit.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />

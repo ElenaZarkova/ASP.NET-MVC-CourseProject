@@ -19,18 +19,22 @@
             <h5>@Model.GenreName</h5>
             <p>Published on: @Model.PublishedOn.ToShortDateString()</p>
 
-            @Html.Action("GetRatingPartial", new { id = Model.Id })
-
-            <button type="button" class="btn btn-primary">Want to Read</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Want to Read</a></li>
-                <li><a class="dropdown-item" href="#">Read</a></li>
-                <li><a class="dropdown-item" href="#">CurrentlyReading</a></li>
-            </ul>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                @Html.Action("GetRatingPartial", new { id = Model.Id })
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Want to Read</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Want to Read</a></li>
+                        <li><a class="dropdown-item" href="#">Read</a></li>
+                        <li><a class="dropdown-item" href="#">CurrentlyReading</a></li>
+                    </ul>
+                </div>
+            }
         </div>
     </div>
 </div>
