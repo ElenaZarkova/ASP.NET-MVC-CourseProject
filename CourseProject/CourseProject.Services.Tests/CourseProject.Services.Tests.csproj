@@ -81,6 +81,7 @@
     <Compile Include="GenresServiceTests\GetAllGenres_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingsServiceTests\Constructor_Should.cs" />
+    <Compile Include="RatingsServiceTests\GetRating_Should.cs" />
     <Compile Include="RatingsServiceTests\RateBook_Should.cs" />
     <Compile Include="UsersServiceTests\CheckIfUserExists_Should.cs" />
     <Compile Include="UsersServiceTests\Constructor_Should.cs" />
