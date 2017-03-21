@@ -24,15 +24,15 @@
             <ul class="inline-list">
                 <li>Sort : </li>
                 <li>
-                    <input id="sort1" type="radio" name="SortBy" value="title" class="display-none">
+                    <input id="sort1" type="radio" name="SortBy" value="title" class="display-none submit-on-checked">
                     <label for="sort1" class="cursor-pointer">Title</label>
                 </li> |
                 <li>
-                    <input id="sort2" type="radio" name="SortBy" value="author" class="display-none">
+                    <input id="sort2" type="radio" name="SortBy" value="author" class="display-none submit-on-checked">
                     <label for="sort2" class="cursor-pointer">Author</label>
                 </li> |
                 <li>
-                    <input id="sort3" type="radio" name="SortBy" value="year" class="display-none">
+                    <input id="sort3" type="radio" name="SortBy" value="year" class="display-none submit-on-checked">
                     <label for="sort3" class="cursor-pointer">Year</label>
                 </li>
                 <div class="clear"></div>
@@ -47,7 +47,7 @@
                             {
                                 <div class="checkbox-new">
                                     <label>
-                                        <input type="checkbox" name="ChosenGenresIds" value="@genre.Id">
+                                        <input type="checkbox" class="submit-on-checked" name="ChosenGenresIds" value="@genre.Id">
                                         <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                         @genre.Name
                                     </label>
@@ -82,4 +82,5 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Scripts/Custom/search-submit.js")
 }

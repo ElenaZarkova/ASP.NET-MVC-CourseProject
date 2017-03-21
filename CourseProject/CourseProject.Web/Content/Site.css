@@ -204,6 +204,13 @@ input[type=radio]:checked + label{
     margin-right: 8em;
 }
 
+.aslink{
+      background:none;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
 /*Profile*/
 /* USER PROFILE PAGE */
 .card {
