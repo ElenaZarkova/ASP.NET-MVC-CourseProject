@@ -243,6 +243,7 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\UserManager.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Mapping\IMapperAdapter.cs" />

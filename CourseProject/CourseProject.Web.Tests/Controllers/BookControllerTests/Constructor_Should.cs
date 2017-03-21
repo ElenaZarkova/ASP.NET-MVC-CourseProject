@@ -46,7 +46,7 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
         }
 
         [Test]
-        public void NotThrow_WhenDataIsNotNull()
+        public void NotThrow_WhenArgumentsAreNotNull()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();

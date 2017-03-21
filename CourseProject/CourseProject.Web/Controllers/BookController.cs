@@ -51,6 +51,7 @@ namespace CourseProject.Web.Controllers
             return this.View(bookViewModel);
         }
 
+        [Authorize]
         [ChildActionOnly]
         public PartialViewResult GetRatingPartial(int id)
         {
@@ -68,7 +69,8 @@ namespace CourseProject.Web.Controllers
 
             return PartialView("_RatingPartial", ratingModel);
         }
-
+        
+        [Authorize]
         public JsonResult Rate(int id, int rate)
         {
             // TODO: error handling

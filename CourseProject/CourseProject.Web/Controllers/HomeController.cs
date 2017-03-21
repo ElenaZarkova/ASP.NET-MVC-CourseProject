@@ -19,7 +19,15 @@ namespace CourseProject.Web.Controllers
 
         public HomeController(IBooksService booksService, IMapperAdapter mapper)
         {
-            // TODO: Guard
+            if(booksService == null)
+            {
+                throw new ArgumentNullException("booksService");
+            }
+
+            if(mapper == null)
+            {
+                throw new ArgumentNullException("mapper");
+            }
 
             this.booksService = booksService;
             this.mapper = mapper;
@@ -27,7 +35,7 @@ namespace CourseProject.Web.Controllers
 
         public ActionResult Index()
         {
-            // TODO: fix mapping
+            // TODO: extract constant
             var books = this.booksService.GetHighestRatedBooks(8).ToList();
             var mappedBooks = this.mapper.Map<IEnumerable<BookViewModel>>(books);
             return View(mappedBooks);
@@ -35,15 +43,11 @@ namespace CourseProject.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

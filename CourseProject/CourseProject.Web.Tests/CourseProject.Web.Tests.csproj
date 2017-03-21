@@ -91,6 +91,11 @@
     <Compile Include="Controllers\BookControllerTests\GetRatingPartial_Should.cs" />
     <Compile Include="Controllers\BookControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\BookControllerTests\Rate_Should.cs" />
+    <Compile Include="Controllers\ChatControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\About_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Constructor_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Contact_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestTests.cs" />
   </ItemGroup>
