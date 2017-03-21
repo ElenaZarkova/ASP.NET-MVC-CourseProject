@@ -83,7 +83,7 @@ namespace CourseProject.Models
                 var count = this.Ratings.Count;
                 if(count > 0)
                 {
-                    return this.Ratings.Sum(x => x.Value) / count;
+                    return this.Ratings.Sum(x => x.Value) / (double)count;
                 }
                 else
                 {

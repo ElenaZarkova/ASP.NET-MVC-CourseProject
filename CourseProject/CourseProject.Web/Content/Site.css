@@ -136,7 +136,9 @@ ul.footer-list li a{
 }
 
 .rating-block{
-    margin: 0 0.5em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
 }
 
 .stars{
@@ -198,6 +200,9 @@ input[type=radio]:checked + label{
     display: inline-block;
 }
 
+.paging{
+    margin-right: 8em;
+}
 
 /*Profile*/
 /* USER PROFILE PAGE */

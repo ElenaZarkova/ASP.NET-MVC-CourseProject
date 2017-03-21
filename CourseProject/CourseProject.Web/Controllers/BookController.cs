@@ -35,22 +35,26 @@ namespace CourseProject.Web.Controllers
             }
             
             var bookViewModel = this.mapper.Map<BookDetailsViewModel>(book);
-
-            // property would not map automatically
-            bookViewModel.RatingCalculated = book.RatingCalculated;
-            int userRating;
-            var rating = book.Ratings.FirstOrDefault(x => x.UserId == this.User.Identity.GetUserId());
-            if (rating != null)
-            {
-                userRating = rating.Value;
-            }
-            else
-            {
-                userRating = 0;
-            }
-
-            bookViewModel.UserRating = userRating;        
+                 
             return this.View(bookViewModel);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult GetRatingPartial(int id)
+        {
+            // TODO: should not include genre
+            var ratingModel = new RatingViewModel();
+            ratingModel.Id = id;
+
+            var rating = this.booksService.GetBookRating(id);
+            ratingModel.RatingCalculated = rating;
+
+            string userId = this.User.Identity.GetUserId();
+            var userRating = this.ratingService.GetRating(id, userId);
+
+            ratingModel.UserRating = userRating;
+
+            return PartialView("_RatingPartial", ratingModel);
         }
 
         public JsonResult Rate(int id, int rate)

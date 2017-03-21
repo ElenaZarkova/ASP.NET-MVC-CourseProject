@@ -11,7 +11,10 @@
             data: { rate: vote, id: id },
             success: function (data) {
                 const newRating = Math.round(data.rating);
-                $("input[name=rating][value=" + newRating + "]").attr('checked', 'checked');
+                $("input[name=rating][value=" + newRating + "]")
+                    .prop('checked', true)
+				    .siblings('input').prop('checked', false);
+
                 $("#rating-calc").text(data.rating);
                 $("#user-rating").removeClass("display-none");
                 $("#user-rating span").text(vote);

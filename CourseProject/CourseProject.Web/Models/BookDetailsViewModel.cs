@@ -21,12 +21,6 @@ namespace CourseProject.Web.Models
 
         public string CoverFile { get; set; }
         
-        public string GenreName { get; set; }
-
-        public ICollection<Rating> Ratings { get; set; }
-
-        public double RatingCalculated { get; set; }
-
-        public int UserRating { get; set; }
+        public string GenreName { get; set; }       
     }
 }

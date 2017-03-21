@@ -23,6 +23,19 @@ namespace CourseProject.Services
             this.data = data;
         }
 
+        public int GetRating(int bookId, string userId)
+        {
+            var rating = this.data.Ratings.All.FirstOrDefault(x => x.UserId == userId && x.BookId == bookId);
+            if (rating != null)
+            {
+                return rating.Value;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public void RateBook(int bookId, string userId, int rate)
         {
             // TODO: Should it check rate range ?

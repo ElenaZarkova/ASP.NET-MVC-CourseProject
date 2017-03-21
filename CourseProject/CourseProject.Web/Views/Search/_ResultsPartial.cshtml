@@ -8,11 +8,12 @@
     </div>
 }
 
-<ul class="pagination">
-    @for (int i = 1; i <= Model.Pages; i++)
+<div >
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.Pages; i++)
             {
-        <li>
-            @Ajax.ActionLink(i.ToString(), "SearchBooks",
+            <li>
+                @Ajax.ActionLink(i.ToString(), "SearchBooks",
             new
             {
                 SearchWord = Model.SubmitModel.SearchWord,
@@ -25,7 +26,7 @@
                 UpdateTargetId = "search-results",
                 InsertionMode = InsertionMode.Replace
             })
-        </li>
-    }
-</ul>
-
+            </li>
+        }
+    </ul>
+</div>
