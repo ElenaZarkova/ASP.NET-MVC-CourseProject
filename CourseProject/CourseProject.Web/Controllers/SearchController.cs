@@ -17,7 +17,20 @@ namespace CourseProject.Web.Controllers
 
         public SearchController(IBooksService booksService, IGenresService genresService, IMapperAdapter mapper)
         {
-            // TODO: Gaurd
+            if (booksService == null)
+            {
+                throw new ArgumentNullException("booksService");
+            }
+
+            if (genresService == null)
+            {
+                throw new ArgumentNullException("genresService");
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException("mapper");
+            }
 
             this.booksService = booksService;
             this.genresService = genresService;
@@ -27,22 +40,18 @@ namespace CourseProject.Web.Controllers
         public ActionResult Index()
         {
             var model = new SearchViewModel();
-            //model.Books = mapper.Map<IEnumerable<BookViewModel>>(this.booksService.GetHighestRatedBooks(9).ToList());
-            model.Genres = this.mapper.Map<IEnumerable<GenreViewModel>>(this.genresService.GetAllGenres());
+            var genres = this.genresService.GetAllGenres();
+            model.Genres = this.mapper.Map<IEnumerable<GenreViewModel>>(genres);
 
             return View(model);
         }
         
         public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page)
         {
-            //bool modelIsNull = submitModel.SearchWord == null && submitModel.ChosenGenresIds == null && submitModel.SortBy == null;
-            //if(modelIsNull)
-            //{
-            //    var books = mapper.Map<IEnumerable<BookViewModel>>(this.booksService.GetHighestRatedBooks(9).ToList());
-            //    return this.PartialView("_ResultsPartial", books);
-            //}
+            // TODO: increase books per page, extract constants
             int actualPage = page ?? 1;
             int booksPerPage = 3;
+
             var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, actualPage, booksPerPage);
             var count = this.booksService.GetBooksCount(submitModel.SearchWord, submitModel.ChosenGenresIds);
 

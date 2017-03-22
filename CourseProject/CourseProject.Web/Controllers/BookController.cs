@@ -32,6 +32,7 @@ namespace CourseProject.Web.Controllers
             {
                 throw new ArgumentNullException("mapper");
             }
+
             this.booksService = booksService;
             this.ratingsService = ratingsService;
             this.mapper = mapper;
