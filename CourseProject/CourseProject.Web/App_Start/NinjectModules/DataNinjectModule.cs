@@ -17,6 +17,8 @@ namespace CourseProject.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<IBetterReadsDbContext>().To<BetterReadsDbContext>().InRequestScope();
+
+            // do not have to be in request scope
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             this.Bind<IBetterReadsData>().To<BetterReadsData>().InRequestScope();
             this.Bind<IBooksService>().To<BooksService>().InRequestScope();

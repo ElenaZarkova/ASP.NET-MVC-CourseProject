@@ -4,6 +4,7 @@
     var displayNone = Model.UserRating == 0;
 }
 
+@* TODO: have 2 partial views ?? *@
 <div class="rating-block row">
     @if (this.User.Identity.IsAuthenticated)
     {
@@ -16,15 +17,10 @@
             <input type="radio" name="rating" class="rating" value="5" />
         </div>
         <div id="rating-calc" class="text-bold rating-info">@Model.RatingCalculated</div>
+        <div id="user-rating" class="@(displayNone ? "display-none" : "")">You gave this book <span>@Model.UserRating</span> stars.</div>
     }
     else
     {
         <div>Rating: <span class="text-bold">@Model.RatingCalculated</span></div>
-    }
-
-
-    @if (this.User.Identity.IsAuthenticated)
-    {
-        <div id="user-rating" class="@(displayNone ? "display-none" : "")">You gave this book <span>@Model.UserRating</span> stars.</div>
     }
 </div>

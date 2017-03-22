@@ -23,14 +23,12 @@ namespace CourseProject.Web.Identity
 
         public string GetUserId()
         {
-            var id = HttpContext.Current.User.Identity.GetUserId();
-            return id;
+            return HttpContext.Current.User.Identity.GetUserId();
         }
 
         public string GetUsername()
         {
-            var username = HttpContext.Current.User.Identity.GetUserName();
-            return username;
+            return HttpContext.Current.User.Identity.GetUserName();
         }
     }
 }

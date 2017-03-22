@@ -71,6 +71,7 @@ namespace CourseProject.Web.Controllers
             ratingModel.RatingCalculated = rating;
 
             string userId = this.User.Identity.GetUserId();
+
             var userIdAgain = this.userProvider.GetUserId();
             var userRating = this.ratingsService.GetRating(id, userId);
 
