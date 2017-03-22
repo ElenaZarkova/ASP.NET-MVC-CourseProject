@@ -223,6 +223,7 @@
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectModules\AutoMapperModule.cs" />
+    <Compile Include="App_Start\NinjectModules\IdentityNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -243,7 +244,8 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\UserManager.cs" />
+    <Compile Include="Identity\Contracts\IUserProvider.cs" />
+    <Compile Include="Identity\UserProvider.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Mapping\IMapperAdapter.cs" />

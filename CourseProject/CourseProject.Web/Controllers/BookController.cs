@@ -7,6 +7,7 @@ using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Models;
 using Microsoft.AspNet.Identity;
+using CourseProject.Web.Identity.Contracts;
 
 namespace CourseProject.Web.Controllers
 {
@@ -15,8 +16,9 @@ namespace CourseProject.Web.Controllers
         private readonly IBooksService booksService;
         private readonly IRatingsService ratingsService;
         private readonly IMapperAdapter mapper;
+        private readonly IUserProvider userProvider;
 
-        public BookController(IBooksService booksService,IRatingsService ratingsService, IMapperAdapter mapper)
+        public BookController(IBooksService booksService,IRatingsService ratingsService, IMapperAdapter mapper, IUserProvider userProvider)
         {
             if(booksService == null)
             {
@@ -36,6 +38,7 @@ namespace CourseProject.Web.Controllers
             this.booksService = booksService;
             this.ratingsService = ratingsService;
             this.mapper = mapper;
+            this.userProvider = userProvider;
         }
 
         public ActionResult Index(int id)
@@ -64,6 +67,7 @@ namespace CourseProject.Web.Controllers
             ratingModel.RatingCalculated = rating;
 
             string userId = this.User.Identity.GetUserId();
+            var userIdAgain = this.userProvider.GetUserId();
             var userRating = this.ratingsService.GetRating(id, userId);
 
             ratingModel.UserRating = userRating;

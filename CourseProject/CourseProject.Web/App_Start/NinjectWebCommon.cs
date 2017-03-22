@@ -67,6 +67,7 @@ namespace CourseProject.Web.App_Start
         {
             kernel.Load(new DataNinjectModule());
             kernel.Load(new AutoMapperModule());
+            kernel.Load(new IdentityNinjectModule());
         }
 
         private static void RegisterWithSignalr(IKernel kernel)

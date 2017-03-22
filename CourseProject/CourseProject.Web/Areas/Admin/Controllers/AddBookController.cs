@@ -62,7 +62,8 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             var book = this.GetBook(bookModel);
             this.booksService.AddBook(book);
 
-            return this.Redirect("/home");
+            this.TempData.Add("Addition", "Your book was added successfully.");
+            return this.Redirect($"/book/{book.Id}");
         }
 
         private Book GetBook(AddBookViewModel bookModel)

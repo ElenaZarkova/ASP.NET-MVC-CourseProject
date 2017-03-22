@@ -8,6 +8,13 @@
 }
 
 <div class="container single_top main-content">
+    @if (TempData["Addition"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Addition"]
+        </div>
+    }
+
     <div class="row">
         <div class="col-md-3">
             <img class="img-responsive book-details-img" src="@Url.Content($"~/Content/Images/{Model.CoverFile}")" alt="@Model.Title" />
