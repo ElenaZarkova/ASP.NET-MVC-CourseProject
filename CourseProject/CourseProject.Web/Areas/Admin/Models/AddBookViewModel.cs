@@ -37,8 +37,7 @@ namespace CourseProject.Web.Areas.Admin.Models
         [Required]
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
-
-        // TODO: Genres in extended model
+        
         public IEnumerable<SelectListItem> Genres { get; set; }
     }
 }
