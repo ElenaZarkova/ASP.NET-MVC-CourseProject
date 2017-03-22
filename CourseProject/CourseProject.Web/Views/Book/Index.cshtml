@@ -48,6 +48,9 @@
 </div>
 </div>
 
-@section scripts{
-    @Scripts.Render("~/bundles/ratings");
+@if (this.User.Identity.IsAuthenticated)
+{
+    @section scripts{
+        @Scripts.Render("~/bundles/ratings");
+    }
 }
