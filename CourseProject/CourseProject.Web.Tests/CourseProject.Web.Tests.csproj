@@ -96,6 +96,8 @@
     <Compile Include="Controllers\HomeControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\Contact_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\ProfileControllerTests\Class_Should.cs" />
+    <Compile Include="Controllers\ProfileControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\SearchControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\SearchControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\SearchControllerTests\SearchBooks_Should.cs" />

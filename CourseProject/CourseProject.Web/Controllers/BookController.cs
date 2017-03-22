@@ -18,9 +18,9 @@ namespace CourseProject.Web.Controllers
         private readonly IMapperAdapter mapper;
         private readonly IUserProvider userProvider;
 
-        public BookController(IBooksService booksService,IRatingsService ratingsService, IMapperAdapter mapper, IUserProvider userProvider)
+        public BookController(IBooksService booksService, IRatingsService ratingsService, IMapperAdapter mapper, IUserProvider userProvider)
         {
-            if(booksService == null)
+            if (booksService == null)
             {
                 throw new ArgumentNullException("booksService");
             }
@@ -50,16 +50,16 @@ namespace CourseProject.Web.Controllers
         {
             var book = this.booksService.GetById(id);
 
-            if(book == null)
+            if (book == null)
             {
                 return this.View("Error");
             }
-            
+
             var bookViewModel = this.mapper.Map<BookDetailsViewModel>(book);
-                 
+
             return this.View(bookViewModel);
         }
-        
+
         [ChildActionOnly]
         public PartialViewResult GetRatingPartial(int id)
         {
@@ -70,21 +70,20 @@ namespace CourseProject.Web.Controllers
             var rating = this.booksService.GetBookRating(id);
             ratingModel.RatingCalculated = rating;
 
-            string userId = this.User.Identity.GetUserId();
-
-            var userIdAgain = this.userProvider.GetUserId();
+            string userId = this.userProvider.GetUserId();
             var userRating = this.ratingsService.GetRating(id, userId);
 
             ratingModel.UserRating = userRating;
 
             return PartialView("_RatingPartial", ratingModel);
         }
-        
+
         [Authorize]
         public JsonResult Rate(int id, int rate)
         {
             // TODO: error handling
-            this.ratingsService.RateBook(id, this.User.Identity.GetUserId(), rate);
+            var userId = this.userProvider.GetUserId();
+            this.ratingsService.RateBook(id, userId, rate);
             var rating = this.booksService.GetBookRating(id);
             return Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
         }
