@@ -35,6 +35,11 @@ namespace CourseProject.Web.Controllers
                 throw new ArgumentNullException("mapper");
             }
 
+            if (userProvider == null)
+            {
+                throw new ArgumentNullException("userProvider");
+            }
+
             this.booksService = booksService;
             this.ratingsService = ratingsService;
             this.mapper = mapper;
@@ -54,8 +59,7 @@ namespace CourseProject.Web.Controllers
                  
             return this.View(bookViewModel);
         }
-
-        [Authorize]
+        
         [ChildActionOnly]
         public PartialViewResult GetRatingPartial(int id)
         {

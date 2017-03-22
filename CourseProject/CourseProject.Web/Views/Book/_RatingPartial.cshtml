@@ -1,19 +1,30 @@
 ﻿@model RatingViewModel
 
-@{ 
+@{
     var displayNone = Model.UserRating == 0;
 }
 
 <div class="rating-block row">
-    <p class="text-danger" id="rating-error"></p>
-    <div id="star-rating" class="stars" data-checked="@Model.RatingCalculated" data-id="@Model.Id">
-        <input type="radio" name="rating" class="rating" value="1" />
-        <input type="radio" name="rating" class="rating" value="2" />
-        <input type="radio" name="rating" class="rating" value="3" />
-        <input type="radio" name="rating" class="rating" value="4" />
-        <input type="radio" name="rating" class="rating" value="5" />
-    </div>
-    <div id="rating-calc" class="text-bold rating-info">@Model.RatingCalculated</div>
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <p class="text-danger" id="rating-error"></p>
+        <div id="star-rating" class="stars" data-checked="@Model.RatingCalculated" data-id="@Model.Id">
+            <input type="radio" name="rating" class="rating" value="1" />
+            <input type="radio" name="rating" class="rating" value="2" />
+            <input type="radio" name="rating" class="rating" value="3" />
+            <input type="radio" name="rating" class="rating" value="4" />
+            <input type="radio" name="rating" class="rating" value="5" />
+        </div>
+        <div id="rating-calc" class="text-bold rating-info">@Model.RatingCalculated</div>
+    }
+    else
+    {
+        <div>Rating: <span class="text-bold">@Model.RatingCalculated</span></div>
+    }
 
-    <div  id="user-rating" class="@(displayNone ? "display-none" : "")">You gave this book <span>@Model.UserRating</span> stars.</div>
+
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <div id="user-rating" class="@(displayNone ? "display-none" : "")">You gave this book <span>@Model.UserRating</span> stars.</div>
+    }
 </div>

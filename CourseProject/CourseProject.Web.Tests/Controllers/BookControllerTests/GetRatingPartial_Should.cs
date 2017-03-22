@@ -14,15 +14,6 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
     [TestFixture]
     public class GetRatingPartial_Should
     {
-        public void NotThrow_WhenDataIsNotNull()
-        {
-            // Arrange
-            var mockedBooksService = new Mock<IBooksService>();
-            var mockedRatingsService = new Mock<IRatingsService>();
-            var mockedMapper = new Mock<IMapperAdapter>();
-
-            // Act & Assert
-            Assert.DoesNotThrow(() => new BookController(mockedBooksService.Object, mockedRatingsService.Object, mockedMapper.Object));
-        }
+       
     }
 }

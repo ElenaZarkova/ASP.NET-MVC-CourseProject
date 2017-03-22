@@ -11,25 +11,25 @@ namespace CourseProject.Web.Identity
     {
         private readonly HttpContext httpContext;
 
-        public UserProvider(HttpContext httpContext)
-        {
-            if(httpContext == null)
-            {
-                throw new ArgumentNullException("httpContext");
-            }
+        //public UserProvider(HttpContext httpContext)
+        //{
+        //    if(httpContext == null)
+        //    {
+        //        throw new ArgumentNullException("httpContext");
+        //    }
 
-            this.httpContext = httpContext;
-        }
+        //    this.httpContext = httpContext;
+        //}
 
         public string GetUserId()
         {
-            var id = this.httpContext.User.Identity.GetUserId();
+            var id = HttpContext.Current.User.Identity.GetUserId();
             return id;
         }
 
         public string GetUsername()
         {
-            var username = this.httpContext.User.Identity.GetUserName();
+            var username = HttpContext.Current.User.Identity.GetUserName();
             return username;
         }
     }
