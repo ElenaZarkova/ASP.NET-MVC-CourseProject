@@ -19,6 +19,9 @@ namespace CourseProject.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbConfig.Intitalize();
             AutoMapperConfig.Config(Assembly.GetExecutingAssembly());
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
     }
 }
