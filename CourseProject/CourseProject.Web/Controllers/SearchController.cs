@@ -1,4 +1,5 @@
 ﻿using CourseProject.Services.Contracts;
+using CourseProject.Web.Common;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Models;
 using System;
@@ -48,17 +49,15 @@ namespace CourseProject.Web.Controllers
         
         public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page)
         {
-            // TODO: increase books per page, extract constants
             int actualPage = page ?? 1;
-            int booksPerPage = 3;
 
-            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, actualPage, booksPerPage);
+            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, actualPage, Constants.BooksPerPage);
             var count = this.booksService.GetBooksCount(submitModel.SearchWord, submitModel.ChosenGenresIds);
 
             var resultViewModel = new SearchResultsViewModel();
             resultViewModel.BooksCount = count;
             resultViewModel.SubmitModel = submitModel;
-            resultViewModel.Pages = (int)Math.Ceiling((double)count / booksPerPage);
+            resultViewModel.Pages = (int)Math.Ceiling((double)count / Constants.BooksPerPage);
 
             resultViewModel.Books = mapper.Map<IEnumerable<BookViewModel>>(result);
 
