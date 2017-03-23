@@ -64,16 +64,17 @@ namespace CourseProject.Web.Controllers
         public PartialViewResult GetRatingPartial(int id)
         {
             // TODO: should not include genre
-            var ratingModel = new RatingViewModel();
-            ratingModel.Id = id;
-
             var rating = this.booksService.GetBookRating(id);
-            ratingModel.RatingCalculated = rating;
 
             string userId = this.userProvider.GetUserId();
             var userRating = this.ratingsService.GetRating(id, userId);
 
-            ratingModel.UserRating = userRating;
+            var ratingModel = new RatingViewModel()
+            {
+                Id = id,
+                RatingCalculated = rating,
+                UserRating = userRating
+            };
 
             return PartialView("_RatingPartial", ratingModel);
         }
@@ -85,6 +86,8 @@ namespace CourseProject.Web.Controllers
             var userId = this.userProvider.GetUserId();
             this.ratingsService.RateBook(id, userId, rate);
             var rating = this.booksService.GetBookRating(id);
+
+            // TODO: should it be uppercase
             return Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
         }
     }
