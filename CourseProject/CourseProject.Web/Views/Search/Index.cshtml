@@ -9,7 +9,7 @@
         @using (Ajax.BeginForm("SearchBooks", null,
             new AjaxOptions()
             {
-                HttpMethod = "GET",
+                HttpMethod = "POST",
                 UpdateTargetId = "search-results",
                 InsertionMode = InsertionMode.Replace
             },
@@ -73,7 +73,7 @@
             </div>
         }
         <div id="search-results" class="col-md-9">
-            @Html.Action("SearchBooks");
+            @Html.Action("SearchInitial")
         </div>
       
     </div>

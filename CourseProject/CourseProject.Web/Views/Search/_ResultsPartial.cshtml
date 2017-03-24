@@ -12,19 +12,20 @@
     <ul class="pagination">
         @for (int i = 1; i <= Model.Pages; i++)
             {
-            <li>
+            <li class=@(i == Model.Page ? "active" : "")>
                 @Ajax.ActionLink(i.ToString(), "SearchBooks",
             new
             {
                 SearchWord = Model.SubmitModel.SearchWord,
                 SortBy = Model.SubmitModel.SortBy,
-                ChosenGenresIds = Model.SubmitModel.ChosenGenresIds,
+                ChosenGenresIds = Model.SubmitModel.ChosenGenresIds != null ? string.Join(";", Model.SubmitModel.ChosenGenresIds) : "",
                 Page = i
             },
             new AjaxOptions()
             {
+                HttpMethod = "POST",
                 UpdateTargetId = "search-results",
-                InsertionMode = InsertionMode.Replace
+                InsertionMode = InsertionMode.Replace         
             })
             </li>
         }

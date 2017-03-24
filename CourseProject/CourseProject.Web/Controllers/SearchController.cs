@@ -1,12 +1,13 @@
-﻿using CourseProject.Services.Contracts;
-using CourseProject.Web.Common;
-using CourseProject.Web.Mapping;
-using CourseProject.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CourseProject.Services.Contracts;
+using CourseProject.Web.Common;
+using CourseProject.Web.Mapping;
+using CourseProject.Web.Models;
+using CourseProject.Web.Attributes;
 
 namespace CourseProject.Web.Controllers
 {
@@ -47,18 +48,38 @@ namespace CourseProject.Web.Controllers
             return View(model);
         }
         
-        public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page)
+        [ChildActionOnly]
+        public PartialViewResult SearchInitial()
+        {
+            int page = 1;
+
+            return this.ExecuteSearch(new SearchSubmitModel(), page);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page) //, string genresIds)
         {
             int actualPage = page ?? 1;
 
-            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, actualPage, Constants.BooksPerPage);
+            //if(submitModel.ChosenGenresIds == null && string.IsNullOrEmpty(genresIds))
+            //{
+            //    submitModel.ChosenGenresIds = genresIds.Split(';').Select(int.Parse).ToList();
+            //}
+
+            return this.ExecuteSearch(submitModel, actualPage);
+        }
+
+        private PartialViewResult ExecuteSearch(SearchSubmitModel submitModel, int page)
+        {
+            var result = this.booksService.SearchBooks(submitModel.SearchWord, submitModel.ChosenGenresIds, submitModel.SortBy, page, Constants.BooksPerPage);
             var count = this.booksService.GetBooksCount(submitModel.SearchWord, submitModel.ChosenGenresIds);
 
             var resultViewModel = new SearchResultsViewModel();
             resultViewModel.BooksCount = count;
             resultViewModel.SubmitModel = submitModel;
             resultViewModel.Pages = (int)Math.Ceiling((double)count / Constants.BooksPerPage);
-
+            resultViewModel.Page = page;
             resultViewModel.Books = mapper.Map<IEnumerable<BookViewModel>>(result);
 
             return this.PartialView("_ResultsPartial", resultViewModel);

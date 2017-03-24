@@ -11,27 +11,19 @@ using CourseProject.Web.Controllers;
 using CourseProject.Models;
 using CourseProject.Web.Models;
 using CourseProject.Web.Common;
-using CourseProject.Web.Attributes;
 
 namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
 {
+    // TODO: maybe remove repeating tests
+
     [TestFixture]
-    public class SearchBooks_Should
+    public class SearchInitial_Should
     {
         [Test]
-        public void HaveAjaxOnlyAttr()
+        public void HaveChildActionOnlyAttr()
         {
-            var method = typeof(SearchController).GetMethod("SearchBooks");
-            var hasAttr = method.GetCustomAttributes(typeof(AjaxOnlyAttribute), false).Any();
-
-            Assert.IsTrue(hasAttr);
-        }
-
-        [Test]
-        public void HaveHttpPostAttr()
-        {
-            var method = typeof(SearchController).GetMethod("SearchBooks");
-            var hasAttr = method.GetCustomAttributes(typeof(HttpPostAttribute), false).Any();
+            var method = typeof(SearchController).GetMethod("SearchInitial");
+            var hasAttr = method.GetCustomAttributes(typeof(ChildActionOnlyAttribute), false).Any();
 
             Assert.IsTrue(hasAttr);
         }
@@ -40,88 +32,40 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
         public void CallBooksServiceSearchBooksWithCorrectParams()
         {
             // Arrange
-            var searchWord = "abcv";
-            var sortBy = "property";
-            var chosenGenresIds = new List<int> { 1, 7 };
-            var page = 15;
-
             var mockedBooksService = new Mock<IBooksService>();
             var mockedGenresService = new Mock<IGenresService>();
             var mockedMapper = new Mock<IMapperAdapter>();
-            var submitModel = new SearchSubmitModel()
-            {
-                SearchWord = searchWord,
-                SortBy = sortBy,
-                ChosenGenresIds = chosenGenresIds
-            };
 
-            mockedBooksService.Setup(x => x.SearchBooks(searchWord, chosenGenresIds, sortBy, page, Constants.BooksPerPage)).Verifiable();
+            mockedBooksService.Setup(x => x.SearchBooks(null, null, null, 1, Constants.BooksPerPage)).Verifiable();
 
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act
-            controller.SearchBooks(submitModel, page);
+            controller.SearchInitial();
 
             // Assert
-            mockedBooksService.Verify(x => x.SearchBooks(searchWord, chosenGenresIds, sortBy, page, Constants.BooksPerPage), Times.Once);
-        }
-        
-        [Test]
-        public void CallBooksServiceSearchBooksWithPage1WhenPageIsNull()
-        {
-            // Arrange
-            var searchWord = "abcv";
-            var sortBy = "property";
-            var chosenGenresIds = new List<int> { 1, 7 };
-
-            var mockedBooksService = new Mock<IBooksService>();
-            var mockedGenresService = new Mock<IGenresService>();
-            var mockedMapper = new Mock<IMapperAdapter>();
-            var submitModel = new SearchSubmitModel()
-            {
-                SearchWord = searchWord,
-                SortBy = sortBy,
-                ChosenGenresIds = chosenGenresIds
-            };
-
-            mockedBooksService.Setup(x => x.SearchBooks(searchWord, chosenGenresIds, sortBy, 1, Constants.BooksPerPage)).Verifiable();
-
-            var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
-
-            // Act
-            controller.SearchBooks(submitModel, null);
-
-            // Assert
-            mockedBooksService.Verify(x => x.SearchBooks(searchWord, chosenGenresIds, sortBy, 1, Constants.BooksPerPage), Times.Once);
+            mockedBooksService.Verify(x => x.SearchBooks(null, null, null, 1, Constants.BooksPerPage), Times.Once);
         }
         
         [Test]
         public void CallBooksServiceGetBooksCountWithCorrectParams()
         {
             // Arrange
-            var searchWord = "abcv";
-            var chosenGenresIds = new List<int> { 1, 7 };
-
             var mockedBooksService = new Mock<IBooksService>();
             var mockedGenresService = new Mock<IGenresService>();
             var mockedMapper = new Mock<IMapperAdapter>();
-            var submitModel = new SearchSubmitModel()
-            {
-                SearchWord = searchWord,
-                ChosenGenresIds = chosenGenresIds
-            };
 
-            mockedBooksService.Setup(x => x.GetBooksCount(searchWord, chosenGenresIds)).Verifiable();
+            mockedBooksService.Setup(x => x.GetBooksCount(null, null)).Verifiable();
 
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act
-            controller.SearchBooks(submitModel, null);
+            controller.SearchInitial();
 
             // Assert
-            mockedBooksService.Verify(x => x.GetBooksCount(searchWord, chosenGenresIds), Times.Once);
+            mockedBooksService.Verify(x => x.GetBooksCount(null, null), Times.Once);
         }
-        
+
         [Test]
         public void CallMapper()
         {
@@ -137,12 +81,12 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act
-            controller.SearchBooks(new SearchSubmitModel(), null);
+            controller.SearchInitial();
 
             // Assert
             mockedMapper.Verify(x => x.Map<IEnumerable<BookViewModel>>(books), Times.Once);
         }
-        
+
         [Test]
         public void ReturnCorrectPartialView()
         {
@@ -153,10 +97,10 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act & Assert
-            controller.WithCallTo(c => c.SearchBooks(new SearchSubmitModel(), null))
+            controller.WithCallTo(c => c.SearchInitial())
                 .ShouldRenderPartialView("_ResultsPartial");
         }
-        
+
         [Test]
         public void ReturnViewModelWithCorrectCount()
         {
@@ -171,31 +115,33 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act & Assert
-            controller.WithCallTo(c => c.SearchBooks(new SearchSubmitModel(), null))
+            controller.WithCallTo(c => c.SearchInitial())
                 .ShouldRenderPartialView("_ResultsPartial")
                 .WithModel<SearchResultsViewModel>(x => x.BooksCount == count);
         }
-        
+
         [Test]
-        public void ReturnViewModelWithCorrectSubmitModel()
+        public void ReturnViewModelWithSubmitModelNotNull()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
             var mockedGenresService = new Mock<IGenresService>();
             var mockedMapper = new Mock<IMapperAdapter>();
-            var submitModel = new SearchSubmitModel();
 
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act & Assert
-            controller.WithCallTo(c => c.SearchBooks(submitModel, null))
+            controller.WithCallTo(c => c.SearchInitial())
                 .ShouldRenderPartialView("_ResultsPartial")
-                .WithModel<SearchResultsViewModel>(x => x.SubmitModel == submitModel);
+                .WithModel<SearchResultsViewModel>(model => 
+                {
+                    Assert.IsNotNull(model);
+                });
         }
-        
+
         [TestCase(9)]
         [TestCase(16)]
-        public void ReturnViewModelWithCorrectPages(int count)
+        public void ReturnViewModelWithCorrectSubmitModel(int count)
         {
             // Arrange
             int pages = (int)Math.Ceiling((double)count / Constants.BooksPerPage);
@@ -209,11 +155,11 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
 
             // Act & Assert
-            controller.WithCallTo(c => c.SearchBooks(new SearchSubmitModel(), null))
+            controller.WithCallTo(c => c.SearchInitial())
                 .ShouldRenderPartialView("_ResultsPartial")
                 .WithModel<SearchResultsViewModel>(x => x.Pages == pages);
         }
-        
+
         [Test]
         public void ReturnViewModelWithCorrectBooks()
         {
@@ -226,9 +172,9 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
                 .Returns(mappedBooks);
 
             var controller = new SearchController(mockedBooksService.Object, mockedGenresService.Object, mockedMapper.Object);
-            
+
             // Act & Assert
-            controller.WithCallTo(c => c.SearchBooks(new SearchSubmitModel(), null))
+            controller.WithCallTo(c => c.SearchInitial())
                 .ShouldRenderPartialView("_ResultsPartial")
                 .WithModel<SearchResultsViewModel>(x => x.Books == mappedBooks);
         }

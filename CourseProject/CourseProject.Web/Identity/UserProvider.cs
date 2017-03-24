@@ -9,18 +9,6 @@ namespace CourseProject.Web.Identity
 {
     public class UserProvider : IUserProvider
     {
-        private readonly HttpContext httpContext;
-
-        //public UserProvider(HttpContext httpContext)
-        //{
-        //    if(httpContext == null)
-        //    {
-        //        throw new ArgumentNullException("httpContext");
-        //    }
-
-        //    this.httpContext = httpContext;
-        //}
-
         public string GetUserId()
         {
             return HttpContext.Current.User.Identity.GetUserId();

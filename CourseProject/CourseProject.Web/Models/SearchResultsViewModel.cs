@@ -13,6 +13,8 @@ namespace CourseProject.Web.Models
 
         public int Pages { get; set; }
 
+        public int Page { get; set; }
+
         public SearchSubmitModel SubmitModel { get; set; }
     }
 }
