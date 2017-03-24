@@ -10,6 +10,7 @@ using CourseProject.Data.Contracts;
 using CourseProject.Services.Contracts;
 using System.IO;
 using CourseProject.Web.Areas.Admin.Models;
+using CourseProject.Web.Common;
 
 namespace CourseProject.Web.Areas.Admin.Controllers
 {
@@ -103,7 +104,23 @@ namespace CourseProject.Web.Areas.Admin.Controllers
 
         private IEnumerable<SelectListItem> GetGenres()
         {
-            var genres = this.genresService.GetAllGenres().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
+            IEnumerable<SelectListItem> genres;
+            if (this.HttpContext.Cache[Constants.GenresCache] != null)
+            {
+                genres = (IEnumerable<SelectListItem>)this.HttpContext.Cache[Constants.GenresCache];
+            }
+            else
+            {
+                genres = this.genresService.GetAllGenres().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
+                // maxvalue because api
+                this.HttpContext.Cache.Insert(
+                    Constants.GenresCache,
+                    genres,
+                    null, 
+                    DateTime.MaxValue,
+                    TimeSpan.FromMinutes(30));
+            }
+
             return genres;
         }
     }
