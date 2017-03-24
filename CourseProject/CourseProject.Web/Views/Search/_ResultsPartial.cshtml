@@ -12,8 +12,8 @@
     <ul class="pagination">
         @for (int i = 1; i <= Model.Pages; i++)
             {
-            <li class=@(i == Model.Page ? "active" : "")>
-                @Ajax.ActionLink(i.ToString(), "SearchBooks",
+            <li class="@(i == Model.Page ? "active" : "")">
+                @*@Ajax.ActionLink(i.ToString(), "SearchBooks",
             new
             {
                 SearchWord = Model.SubmitModel.SearchWord,
@@ -26,7 +26,8 @@
                 HttpMethod = "POST",
                 UpdateTargetId = "search-results",
                 InsertionMode = InsertionMode.Replace         
-            })
+            })*@
+                <a class="page cursor-pointer" data-page="@i">@i</a>
             </li>
         }
     </ul>

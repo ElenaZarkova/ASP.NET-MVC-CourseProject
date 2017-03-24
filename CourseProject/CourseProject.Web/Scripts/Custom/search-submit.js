@@ -7,16 +7,20 @@
         $("#search-form").submit();
     })
 
-    //$(".page").click(function (ev) {
-    //    var $that = $(this);
-    //    var page = $that.attr("data-page").trim();
-    //    var $form = $("#search-form");
+    $("#search-results").click(function (ev) {
+        var $target = $(ev.target);
+        if (!$target.hasClass("page")) {
+            return;
+        }
+        var page = $target.attr("data-page").trim();
+        var $form = $("#search-form");
 
-    //    var input = $("<input>")
-    //           .attr("type", "hidden")
-    //           .attr("name", "page")
-    //            .val(page);
-    //    $form.append($(input));
-    //    $form.submit();
-    //})
+        var $input = $("<input>")
+               .attr("type", "hidden")
+               .attr("name", "page")
+                .val(page);
+        $form.append($input);
+        $form.submit();
+        $input.remove();
+    })
 })
