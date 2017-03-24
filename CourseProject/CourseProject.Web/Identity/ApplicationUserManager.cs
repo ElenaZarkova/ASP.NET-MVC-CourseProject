@@ -5,10 +5,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using CourseProject.Models;
 using CourseProject.Data;
+using CourseProject.Web.Identity.Contracts;
 
 namespace CourseProject.Web.Identity
 {
-    public class ApplicationUserManager : UserManager<User>
+    public class ApplicationUserManager : UserManager<User>, IApplicationUserManager
     {
         public ApplicationUserManager(IUserStore<User> store)
             : base(store)
