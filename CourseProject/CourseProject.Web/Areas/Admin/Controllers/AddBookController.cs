@@ -45,6 +45,7 @@ namespace CourseProject.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Index([Bind(Exclude = "Genres")]AddBookViewModel bookModel)
         {
             if (!ModelState.IsValid)

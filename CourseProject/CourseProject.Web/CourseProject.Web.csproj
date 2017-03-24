@@ -226,6 +226,7 @@
     <Compile Include="App_Start\NinjectModules\IdentityNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\WebNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />

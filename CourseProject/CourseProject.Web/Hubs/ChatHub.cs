@@ -6,14 +6,16 @@ using Microsoft.AspNet.SignalR;
 using CourseProject.Services.Contracts;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace CourseProject.Web.Hubs
 {
     public class ChatHub : Hub
     {
         private readonly IUsersService usersService;
+       // private readonly HttpServerUtility serverUtility;
 
-        public ChatHub(IUsersService usersService)
+        public ChatHub(IUsersService usersService)// , HttpServerUtility serverUtility)
         {
             if (usersService == null)
             {
@@ -21,6 +23,7 @@ namespace CourseProject.Web.Hubs
             }
 
             this.usersService = usersService;
+            //this.serverUtility = serverUtility;
         }
 
         public override Task OnConnected()
@@ -58,6 +61,8 @@ namespace CourseProject.Web.Hubs
         public void SendMessage(string username, string message)
         {
             var callerName = this.Context.User.Identity.GetUserName();
+            // message = this.serverUtility.HtmlEncode(message);
+            message = HttpUtility.HtmlEncode(message);
             Clients.Group(username).AddChatMessage(callerName, message);
         }
     }

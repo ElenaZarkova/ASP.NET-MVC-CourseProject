@@ -12,16 +12,19 @@ namespace CourseProject.Web.Areas.Admin.Models
         [Required]
         [MinLength(1)]
         [MaxLength(50)]
+        [AllowHtml]
         public string Title { get; set; }
         
         [Required]
         [MinLength(3)]
         [MaxLength(80)]
+        [AllowHtml]
         public string Author { get; set; }
 
         [Required]
         [MinLength(3)]
         [MaxLength(300)]
+        [AllowHtml]
         public string Description { get; set; }
 
         // TODO: Fix date validation

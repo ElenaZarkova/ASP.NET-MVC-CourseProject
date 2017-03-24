@@ -17,13 +17,13 @@
         var message = $('#msg-input').val();
         var username = $('#chat-panel').attr('data-username');
         chatHub.server.sendMessage(username, message);
+        var encodedMessage = $('<div>').text(message).html();
 
-        // do sth
         var element = '<li class="right clearfix">' +
          '<span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span>' +
             '<div class="chat-body clearfix">' +
-                '<div class="header"><strong class="pull-right primary-font">You</strong></div>' +
-                `<p>${message}</p>`
+                '<div class="header"><strong class="pull-right primary-font">Me</strong></div>' +
+                `<p>${encodedMessage}</p>`
         '</div>'
         '</li>';
 

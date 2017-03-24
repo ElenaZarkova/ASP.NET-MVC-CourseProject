@@ -68,11 +68,11 @@ namespace CourseProject.Web.App_Start
             kernel.Load(new DataNinjectModule());
             kernel.Load(new AutoMapperModule());
             kernel.Load(new IdentityNinjectModule());
+            kernel.Load(new WebNinjectModule());
         }
 
         private static void RegisterWithSignalr(IKernel kernel)
         {
-            kernel.Bind<ChatHub>().ToSelf();
             GlobalHost.DependencyResolver = new NinjectSignalRDependencyResolver(kernel);
         }
     }
