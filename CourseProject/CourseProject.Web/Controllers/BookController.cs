@@ -51,7 +51,7 @@ namespace CourseProject.Web.Controllers
 
             if (book == null)
             {
-                return this.View("Error");
+                return this.View("BookError");
             }
 
             var bookViewModel = this.mapper.Map<BookDetailsViewModel>(book);

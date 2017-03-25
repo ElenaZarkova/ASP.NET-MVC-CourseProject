@@ -71,7 +71,7 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
             var controller = new BookController(mockedBooksService.Object, mockedRatingsService.Object, mockedMapper.Object, mockedUserProvider.Object);
 
             // Act & Assert
-            controller.WithCallTo(c => c.Index(5)).ShouldRenderView("Error");
+            controller.WithCallTo(c => c.Index(5)).ShouldRenderView("BookError");
         }
 
         [Test]
