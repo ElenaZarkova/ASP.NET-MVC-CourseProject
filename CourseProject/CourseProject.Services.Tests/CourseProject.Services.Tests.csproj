@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooksServiceTests\AddBook_Should.cs" />
+    <Compile Include="BooksServiceTests\BookWithTitleExists_Should.cs" />
     <Compile Include="BooksServiceTests\Constructor_Should.cs" />
     <Compile Include="BooksServiceTests\GetBookById_Should.cs" />
     <Compile Include="BooksServiceTests\GetBookRating_Should.cs" />
@@ -102,6 +103,10 @@
     <ProjectReference Include="..\CourseProject.Services\CourseProject.Services.csproj">
       <Project>{9e67a7c2-6b3a-495d-9112-bb1376bfba6f}</Project>
       <Name>CourseProject.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CourseProject.ViewModels\CourseProject.ViewModels.csproj">
+      <Project>{27c2c0f6-06d4-4a65-8d41-7b735f79ad52}</Project>
+      <Name>CourseProject.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
