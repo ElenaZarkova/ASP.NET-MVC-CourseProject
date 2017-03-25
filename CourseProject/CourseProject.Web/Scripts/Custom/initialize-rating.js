@@ -18,8 +18,8 @@
 				    .siblings('input').prop('checked', false);
 
                     // $("#star-rating").rating.set($input, newRating);
-
-                $("#rating-calc").text(data.rating);
+                const ratingCalc = +data.rating;
+                $("#rating-calc").text(ratingCalc.toFixed(2));
                 $("#user-rating").removeClass("display-none");
                 $("#user-rating span").text(vote);
             },
