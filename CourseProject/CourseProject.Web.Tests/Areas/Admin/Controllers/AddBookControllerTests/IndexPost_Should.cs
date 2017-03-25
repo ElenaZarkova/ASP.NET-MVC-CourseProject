@@ -49,6 +49,42 @@ namespace CourseProject.Web.Tests.Areas.Admin.Controllers.AddBookControllerTests
         }
 
         [Test]
+        public void HaveHttpPostAttribute()
+        {
+            var method = typeof(AddBookController).GetMethod("Index", new Type[]{ typeof(AddBookViewModel) });
+            var hasAttr = method.GetCustomAttributes(typeof(HttpPostAttribute), false).Any();
+
+            Assert.IsTrue(hasAttr);
+        }
+
+        [Test]
+        public void HaveValidateAntiForgeryAttribute()
+        {
+            var method = typeof(AddBookController).GetMethod("Index", new Type[] { typeof(AddBookViewModel) });
+            var hasAttr = method.GetCustomAttributes(typeof(ValidateAntiForgeryTokenAttribute), false).Any();
+
+            Assert.IsTrue(hasAttr);
+        }
+
+        [Test]
+        public void HaveValidateInputAttribute()
+        {
+            var method = typeof(AddBookController).GetMethod("Index", new Type[] { typeof(AddBookViewModel) });
+            var hasAttr = method.GetCustomAttributes(typeof(ValidateInputAttribute), false).Any();
+
+            Assert.IsTrue(hasAttr);
+        }
+
+        [Test]
+        public void HaveValidateInputAttributeWithValueFalse()
+        {
+            var method = typeof(AddBookController).GetMethod("Index", new Type[] { typeof(AddBookViewModel) });
+            var attr = method.GetCustomAttributes(typeof(ValidateInputAttribute), false)[0] as ValidateInputAttribute;
+
+            Assert.IsFalse(attr.EnableValidation);
+        }
+
+        [Test]
         public void ReturnViewWithModel_WhenModelStateIsNotValid()
         {
             // Arrange
@@ -185,6 +221,7 @@ namespace CourseProject.Web.Tests.Areas.Admin.Controllers.AddBookControllerTests
             };
             this.mockedGenresService.Setup(x => x.GetAllGenres()).Returns(genres);
 
+            this.mockedCacheProvider.Setup(x => x.GetValue(Constants.GenresCache)).Returns(null);
             this.mockedCacheProvider.Setup(x => x.InsertWithSlidingExpiration(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<int>()))
                 .Verifiable();
             this.controller.ModelState.AddModelError("error", "message");

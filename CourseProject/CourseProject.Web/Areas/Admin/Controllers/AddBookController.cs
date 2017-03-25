@@ -42,7 +42,27 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             {
                 throw new ArgumentNullException("genresService");
             }
-            
+
+            if (userProvider == null)
+            {
+                throw new ArgumentNullException("userProvider");
+            }
+
+            if (serverProvider == null)
+            {
+                throw new ArgumentNullException("serverProvider");
+            }
+
+            if (cacheProvider == null)
+            {
+                throw new ArgumentNullException("cacheProvider");
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException("mapper");
+            }
+
             this.booksService = booksService;
             this.genresService = genresService;
             this.userProvider = userProvider;

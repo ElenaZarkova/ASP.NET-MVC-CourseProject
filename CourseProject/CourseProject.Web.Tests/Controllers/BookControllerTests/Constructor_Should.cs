@@ -8,7 +8,7 @@ using CourseProject.Web.Common.Providers.Contracts;
 namespace CourseProject.Web.Tests.Controllers.BookControllerTests
 {
     [TestFixture]
-    class Constructor_Should
+    public class Constructor_Should
     {
         [Test]
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenBooksServiceIsNull()

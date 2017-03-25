@@ -85,11 +85,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\Class_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\Constructor_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\IndexPost_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\Index_Should.cs" />
-    <Compile Include="Controllers\AddBookControllerTests\Constructor_Should.cs" />
-    <Compile Include="Controllers\AddBookControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\BookControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\BookControllerTests\GetRatingPartial_Should.cs" />
     <Compile Include="Controllers\BookControllerTests\Index_Should.cs" />
