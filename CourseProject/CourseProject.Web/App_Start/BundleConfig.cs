@@ -31,6 +31,20 @@ namespace CourseProject.Web
                       "~/Scripts/rating.js",
                       "~/Scripts/Custom/initialize-rating.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ratings").Include(
+                      "~/Scripts/rating.js",
+                      "~/Scripts/Custom/initialize-rating.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                     "~/Scripts/jquery.signalR-2.2.1.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chat").Include(
+                     "~/Scripts/Custom/chat.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/search").Include(
+                     "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                     "~/Scripts/Custom/search-submit.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-paper.min.css",
                       "~/Content/site.css",
