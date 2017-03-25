@@ -11,16 +11,25 @@ using CourseProject.Services.Contracts;
 using System.IO;
 using CourseProject.Web.Areas.Admin.Models;
 using CourseProject.Web.Common;
+using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = Constants.AdminRole)]
     public class AddBookController : Controller
     {
         private readonly IBooksService booksService;
         private readonly IGenresService genresService;
+        private readonly IUserProvider userProvider;
+        private readonly IServerProvider serverProvider;
+        private readonly ICacheProvider cacheProvider;
 
-        public AddBookController(IBooksService booksService, IGenresService genresService)
+        public AddBookController(
+            IBooksService booksService, 
+            IGenresService genresService, 
+            IUserProvider userProvider,
+            IServerProvider serverProvider,
+            ICacheProvider cacheProvider)
         {
             if (booksService == null)
             {
@@ -34,6 +43,9 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             
             this.booksService = booksService;
             this.genresService = genresService;
+            this.userProvider = userProvider;
+            this.serverProvider = serverProvider;
+            this.cacheProvider = cacheProvider;
         }
 
         public ActionResult Index()
@@ -71,7 +83,7 @@ namespace CourseProject.Web.Areas.Admin.Controllers
         private Book GetBook(AddBookViewModel bookModel)
         {
             var filename = bookModel.CoverFile.FileName;
-            var path = this.Server.MapPath($"~/Content/Images/{filename}");
+            var path = this.serverProvider.MapPath($"~/Content/Images/{filename}");
             bookModel.CoverFile.SaveAs(path);
 
             // TODO: Should it be mapped
@@ -106,20 +118,16 @@ namespace CourseProject.Web.Areas.Admin.Controllers
         private IEnumerable<SelectListItem> GetGenres()
         {
             IEnumerable<SelectListItem> genres;
-            if (this.HttpContext.Cache[Constants.GenresCache] != null)
+            var cachedGenres = this.cacheProvider.GetValue(Constants.GenresCache);
+            if (cachedGenres != null)
             {
-                genres = (IEnumerable<SelectListItem>)this.HttpContext.Cache[Constants.GenresCache];
+                genres = (IEnumerable<SelectListItem>)cachedGenres;
             }
             else
             {
                 genres = this.genresService.GetAllGenres().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
                 // maxvalue because api
-                this.HttpContext.Cache.Insert(
-                    Constants.GenresCache,
-                    genres,
-                    null, 
-                    DateTime.MaxValue,
-                    TimeSpan.FromMinutes(30));
+                this.cacheProvider.InsertWithSlidingExpiration(Constants.GenresCache, genres, Constants.GenresExpirationInMinutes);
             }
 
             return genres;

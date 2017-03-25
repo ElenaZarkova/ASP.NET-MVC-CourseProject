@@ -1,4 +1,4 @@
-﻿namespace CourseProject.Web.Identity.Contracts
+﻿namespace CourseProject.Web.Common.Providers.Contracts
 {
     public interface IUserProvider
     {

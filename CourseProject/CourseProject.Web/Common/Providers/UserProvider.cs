@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
-using CourseProject.Web.Identity.Contracts;
+using CourseProject.Web.Common.Providers.Contracts;
 
-namespace CourseProject.Web.Identity
+namespace CourseProject.Web.Common.Providers
 {
     public class UserProvider : IUserProvider
     {

@@ -6,8 +6,7 @@ using System.Web.Mvc;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Models;
-using Microsoft.AspNet.Identity;
-using CourseProject.Web.Identity.Contracts;
+using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Controllers
 {

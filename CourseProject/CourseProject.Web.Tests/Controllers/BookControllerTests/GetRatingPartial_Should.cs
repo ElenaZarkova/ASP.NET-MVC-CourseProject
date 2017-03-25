@@ -12,6 +12,7 @@ using CourseProject.Web.Controllers;
 using CourseProject.Web.Identity.Contracts;
 using TestStack.FluentMVCTesting;
 using CourseProject.Web.Models;
+using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Tests.Controllers.BookControllerTests
 {

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
-using CourseProject.Web.Identity.Contracts;
+using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Tests.Controllers.BookControllerTests
 {
