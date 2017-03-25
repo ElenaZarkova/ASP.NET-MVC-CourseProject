@@ -8,9 +8,13 @@
     chatHub.client.addChatMessage = addChatMessage;
 
     $('#submit-user').click(function (ev) {
+        var previousUsername = $('#chat-panel').attr("data-username");
+        if (previousUsername) {
+            chatHub.server.disconnect(previousUsername);
+        }
+
         var username = $('#username').val();
-        console.log(username);
-        chatHub.server.checkIfUserExists(username);
+        chatHub.server.checkUsernameAndConnect(username);
     });
 
     $('#msg-btn').click(function (ev) {
@@ -38,6 +42,8 @@ function chatWith(username) {
     const chatPanel = $('#chat-panel');
     chatPanel.removeClass('display-none');
     chatPanel.attr('data-username', username);
+
+    $("#messages").html("");
 }
 
 function showUsernameError() {
@@ -46,18 +52,13 @@ function showUsernameError() {
 }
 
 function addChatMessage(username, message) {
-    const currentUsername = $('#chat-panel').attr('data-username');
-    if (username === currentUsername) {
+    const element = '<li class="left clearfix">' +
+            '<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span>' +
+            '<div class="chat-body clearfix">' +
+                `<div class="header"><strong class="primary-font">${username}</strong></div>` +
+                `<p>${message}</p>` +
+            '</div>' +
+        '</li>';
 
-        const element = '<li class="left clearfix">' +
-                '<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span>' +
-                '<div class="chat-body clearfix">' +
-                    `<div class="header"><strong class="primary-font">${username}</strong></div>` +
-                    `<p>${message}</p>` +
-                '</div>' +
-            '</li>';
-
-        $('#messages').append(element);
-
-    }
+    $('#messages').append(element);
 }

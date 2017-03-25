@@ -26,30 +26,27 @@ namespace CourseProject.Web.Hubs
             //this.serverUtility = serverUtility;
         }
 
-        public override Task OnConnected()
+        public void Connect(string username)
         {
             string name = this.Context.User.Identity.GetUserName();
-
-            Groups.Add(Context.ConnectionId, name);
-
-            return base.OnConnected();
+            var groupName = $"{name}_{username}";
+            Groups.Add(Context.ConnectionId, groupName);
         }
 
-        public override Task OnDisconnected(bool stopCalled)
+        public void Disconnect(string username)
         {
             string name = this.Context.User.Identity.GetUserName();
-
-            Groups.Remove(Context.ConnectionId, name);
-
-            return base.OnDisconnected(stopCalled);
+            var groupName = $"{name}_{username}";
+            Groups.Remove(Context.ConnectionId, groupName);
         }
 
-        public void CheckIfUserExists(string username)
+        public void CheckUsernameAndConnect(string username)
         {
             var exists = this.usersService.CheckIfUserExists(username);
             // var exists = true;
             if (exists)
             {
+                this.Connect(username);
                 Clients.Caller.ChatWith(username);
             }
             else
@@ -61,9 +58,9 @@ namespace CourseProject.Web.Hubs
         public void SendMessage(string username, string message)
         {
             var callerName = this.Context.User.Identity.GetUserName();
-            // message = this.serverUtility.HtmlEncode(message);
             message = HttpUtility.HtmlEncode(message);
-            Clients.Group(username).AddChatMessage(callerName, message);
+            var receiverGroupName = $"{username}_{callerName}";
+            Clients.Group(receiverGroupName).AddChatMessage(callerName, message);
         }
     }
 }
