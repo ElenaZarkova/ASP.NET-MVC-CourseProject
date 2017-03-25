@@ -71,26 +71,26 @@ namespace CourseProject.Web.Areas.Admin.Controllers
 
             if (!this.IsImageFile(bookSubmitModel.CoverFile))
             {
-                this.ModelState.AddModelError("CoverFile", "Cover photo should be an image file.");
+                this.ModelState.AddModelError("CoverFile", Constants.CoverFileErrorMessage);
                 bookSubmitModel.Genres = this.GetGenres();
                 return View(bookSubmitModel);
             }
 
             if (this.booksService.BookWithTitleExists(bookSubmitModel.Title))
             {
-                this.ModelState.AddModelError("Title", "There is already a book with this title added to BetterReads");
+                this.ModelState.AddModelError("Title", Constants.TitleExistsErrorMessage);
                 bookSubmitModel.Genres = this.GetGenres();
                 return View(bookSubmitModel);
             }
 
             var filename = bookSubmitModel.CoverFile.FileName;
-            var path = this.serverProvider.MapPath($"~/Content/Images/{filename}");
+            var path = this.serverProvider.MapPath(Constants.ImagesRelativePath + filename);
             bookSubmitModel.CoverFile.SaveAs(path);
 
             var bookModel = this.mapper.Map<BookModel>(bookSubmitModel);
             var bookId = this.booksService.AddBook(bookModel, filename);
 
-            this.TempData.Add("Addition", "Your book was added successfully.");
+            this.TempData.Add(Constants.AddBookSuccessKey, Constants.AddBookSuccessMessage);
             return this.Redirect($"/book/{bookId}");
         }
 
