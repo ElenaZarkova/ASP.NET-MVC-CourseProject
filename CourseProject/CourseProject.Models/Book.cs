@@ -8,17 +8,13 @@ namespace CourseProject.Models
 {
     public class Book
     {
-        private ICollection<User> usersWhoWantToRead;
-        private ICollection<User> usersCurrentlyReading;
-        private ICollection<User> usersRead;
         private ICollection<Rating> ratings;
-        
+        private ICollection<UserBook> userBooks;
+
         public Book()
         {
-            this.usersWhoWantToRead = new HashSet<User>();
-            this.usersCurrentlyReading = new HashSet<User>();
-            this.usersRead = new HashSet<User>();
             this.ratings = new HashSet<Rating>();
+            this.userBooks = new HashSet<UserBook>();
         }
 
         public int Id { get; set; }
@@ -51,28 +47,16 @@ namespace CourseProject.Models
 
         public virtual Genre Genre { get; set; }
 
-        public virtual ICollection<User> UsersWhoWantToRead
-        {
-            get { return this.usersWhoWantToRead; }
-            set { this.usersWhoWantToRead = value; }
-        }
-
-        public virtual ICollection<User> UsersCurrentlyReading
-        {
-            get { return this.usersCurrentlyReading; }
-            set { this.usersCurrentlyReading = value; }
-        }
-
-        public virtual ICollection<User> UsersRead
-        {
-            get { return this.usersRead; }
-            set { this.usersRead = value; }
-        }
-
         public virtual ICollection<Rating> Ratings
         {
             get { return this.ratings; }
             set { this.ratings = value; }
+        }
+
+        public virtual ICollection<UserBook> UserBooks
+        {
+            get { return this.userBooks; }
+            set { this.userBooks = value; }
         }
 
         // Virtual so that it can be tested

@@ -8,42 +8,25 @@ namespace CourseProject.Models
 {
     public class User : IdentityUser
     {
-        // TODO: Should it be one table with additional field
-        private ICollection<Book> wantToRead;
-        private ICollection<Book> currentlyReading;
-        private ICollection<Book> read;
         private ICollection<Rating> ratings;
+        private ICollection<UserBook> userBooks;
 
         public User()
         {
-            this.wantToRead = new HashSet<Book>();
-            this.currentlyReading = new HashSet<Book>();
-            this.read = new HashSet<Book>();
             this.ratings = new HashSet<Rating>();
+            this.userBooks = new HashSet<UserBook>();
         }
-
-        public virtual ICollection<Book> WantToRead
-        {
-            get { return this.wantToRead; }
-            set { this.wantToRead = value;  }
-        }
-
-        public virtual ICollection<Book> CurrentlyReading
-        {
-            get { return this.currentlyReading; }
-            set { this.currentlyReading = value; }
-        }
-
-        public virtual ICollection<Book> Read
-        {
-            get { return this.read; }
-            set { this.read = value; }
-        }
-
+        
         public virtual ICollection<Rating> Ratings
         {
             get { return this.ratings; }
             set { this.ratings = value; }
+        }
+
+        public virtual ICollection<UserBook> UserBooks
+        {
+            get { return this.userBooks; }
+            set { this.userBooks = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

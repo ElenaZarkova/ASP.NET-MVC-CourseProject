@@ -31,10 +31,6 @@ namespace CourseProject.Data
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(x => x.WantToRead).WithMany(x => x.UsersWhoWantToRead);
-            modelBuilder.Entity<User>().HasMany(x => x.CurrentlyReading).WithMany(x => x.UsersCurrentlyReading);
-            modelBuilder.Entity<User>().HasMany(x => x.Read).WithMany(x => x.UsersRead);
-
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 

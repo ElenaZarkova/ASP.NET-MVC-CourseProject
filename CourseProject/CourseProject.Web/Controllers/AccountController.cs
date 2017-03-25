@@ -87,7 +87,7 @@ namespace CourseProject.Web.Controllers
                 var result = await this.userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.userManager.AddToRoleAsync(user.Id, RoleNames.Regular);
+                    await this.userManager.AddToRoleAsync(user.Id, CourseProject.Web.Common.Constants.RegularRole);
 
                     await this.signInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
