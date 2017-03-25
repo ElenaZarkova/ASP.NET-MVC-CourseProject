@@ -7,6 +7,9 @@ using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
 using CourseProject.Models;
 using CourseProject.ViewModels;
+using CourseProject.Web.Common.Providers.Contracts;
+using CourseProject.Web.Common;
+using System;
 
 namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
 {
@@ -14,14 +17,53 @@ namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
     public class Index_Should
     {
         [Test]
-        public void CallBooksServiceHighestRatedBooks()
+        public void CallCacheGetValueWithCorrectKey()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
             var mockedMapper = new Mock<IMapperAdapter>();
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Verifiable();
+
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
+
+            // Act 
+            controller.Index();
+
+            // Assert
+            mockedCacheProvider.Verify(x => x.GetValue(Constants.TopBooksCache), Times.Once);
+        }
+
+        [Test]
+        public void NotCallBooksService_WhenCacheIsNotNull()
+        {
+            // Arrange
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+            mockedBooksService.Setup(x => x.GetHighestRatedBooks(It.IsAny<int>())).Verifiable();
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(new List<BookViewModel>());
+
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
+
+            // Act 
+            controller.Index();
+
+            // Assert
+            mockedBooksService.Verify(x => x.GetHighestRatedBooks(It.IsAny<int>()), Times.Never);
+        }
+
+        [Test]
+        public void CallBooksServiceHighestRatedBooks_WhenCacheIsNull()
+        {
+            // Arrange
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
             mockedBooksService.Setup(x => x.GetHighestRatedBooks(It.IsAny<int>())).Returns(new List<Book>());
 
-            var controller = new HomeController(mockedBooksService.Object, mockedMapper.Object);
+            var controller = new HomeController(mockedBooksService.Object,mockedCacheProvider.Object, mockedMapper.Object);
 
             // Act 
             controller.Index();
@@ -31,32 +73,38 @@ namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
         }
 
         [Test]
-        public void CallBooksServiceHighestRatedBooksWithCorrectCount()
+        public void CallBooksServiceHighestRatedBooksWithCorrectCount_WhenCacheIsNull()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
             var mockedMapper = new Mock<IMapperAdapter>();
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
             mockedBooksService.Setup(x => x.GetHighestRatedBooks(It.IsAny<int>())).Returns(new List<Book>());
 
-            var controller = new HomeController(mockedBooksService.Object, mockedMapper.Object);
+            var controller = new HomeController(mockedBooksService.Object,mockedCacheProvider.Object, mockedMapper.Object);
 
             // Act 
             controller.Index();
 
             // Assert
-            mockedBooksService.Verify(x => x.GetHighestRatedBooks(8), Times.Once);
+            mockedBooksService.Verify(x => x.GetHighestRatedBooks(Constants.TopBooksCount), Times.Once);
         }
         
         [Test]
-        public void CallMapperWithCorrectCollection()
+        public void CallMapperWithCorrectCollection_WhenCacheIsNull()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
             var mockedMapper = new Mock<IMapperAdapter>();
+
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
+
             var books = new List<Book>();
             mockedBooksService.Setup(x => x.GetHighestRatedBooks(It.IsAny<int>())).Returns(books);
             mockedMapper.Setup(x => x.Map<IEnumerable<BookViewModel>>(It.IsAny<IEnumerable<Book>>())).Verifiable();
-            var controller = new HomeController(mockedBooksService.Object, mockedMapper.Object);
+            var controller = new HomeController(mockedBooksService.Object,mockedCacheProvider.Object, mockedMapper.Object);
 
             // Act 
             controller.Index();
@@ -66,34 +114,99 @@ namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
         }
 
         [Test]
+        public void CallCacheInsertWithCorrectBooks_WhenCacheIsNull()
+        {
+            // Arrange
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+
+            var mappedBooks = new List<BookViewModel>();
+            mockedMapper.Setup(x => x.Map<IEnumerable<BookViewModel>>(It.IsAny<IEnumerable<Book>>())).Returns(mappedBooks);
+
+            IEnumerable<BookViewModel> cachedBooks = null;
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
+            mockedCacheProvider.Setup(x => x.InsertWithAbsoluteExpiration(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<DateTime>()))
+                .Callback((string key, object value, DateTime expiration) => cachedBooks = (IEnumerable<BookViewModel>)value);               
+
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
+
+            // Act 
+            controller.Index();
+
+            // Assert
+            CollectionAssert.AreEqual(mappedBooks, cachedBooks);
+        }
+
+        [Test]
+        public void CallCacheInsertWithCorrectKey_WhenCacheIsNull()
+        {
+            // Arrange
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
+            mockedCacheProvider.Setup(x => x.InsertWithAbsoluteExpiration(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<DateTime>())).Verifiable();
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
+
+            // Act 
+            controller.Index();
+
+            // Assert
+            mockedCacheProvider.Verify(x => x.InsertWithAbsoluteExpiration(Constants.TopBooksCache, It.IsAny<object>(), It.IsAny<DateTime>()), Times.Once);
+        }
+
+        [Test]
         public void ReturnDefaultView()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
             var mockedMapper = new Mock<IMapperAdapter>();
 
-            var controller = new HomeController(mockedBooksService.Object, mockedMapper.Object);
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
 
             // Act & Assert
             controller.WithCallTo(c => c.Index()).ShouldRenderDefaultView();
         }
 
         [Test]
-        public void ReturnViewWithCorrectModel()
+        public void ReturnViewWithCorrectModel_WhenCacheIsNull()
         {
             // Arrange
             var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
             var mockedMapper = new Mock<IMapperAdapter>();
-            var books = new List<Book>();
+
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(null);
+            
             var mappedBooks = new List<BookViewModel>();
-            mockedBooksService.Setup(x => x.GetHighestRatedBooks(It.IsAny<int>())).Returns(books);
-            mockedMapper.Setup(x => x.Map<IEnumerable<BookViewModel>>(books)).Returns(mappedBooks);
-            var controller = new HomeController(mockedBooksService.Object, mockedMapper.Object);
+            mockedMapper.Setup(x => x.Map<IEnumerable<BookViewModel>>(It.IsAny<IEnumerable<Book>>())).Returns(mappedBooks);
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
 
             // Act & Assert
             controller.WithCallTo(c => c.Index()).ShouldRenderDefaultView()
                 .WithModel(mappedBooks);
 
+        }
+
+        [Test]
+        public void ReturnViewWithCorrectModel_WhenCacheIsNotNull()
+        {
+            // Arrange
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedCacheProvider = new Mock<ICacheProvider>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+
+            var mappedBooks = new List<BookViewModel>();
+            mockedCacheProvider.Setup(x => x.GetValue(It.IsAny<string>())).Returns(mappedBooks);
+
+            var controller = new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, mockedMapper.Object);
+
+            // Act & Assert
+            controller.WithCallTo(c => c.Index()).ShouldRenderDefaultView()
+                .WithModel(mappedBooks);
         }
     }
 }

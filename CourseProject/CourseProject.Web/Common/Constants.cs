@@ -13,5 +13,9 @@
         public const string ImagesRelativePath = "~/Content/Images/";
         public const string AddBookSuccessMessage = "Your book was added successfully.";
         public const string AddBookSuccessKey = "Addition";
+
+        public const int TopBooksCount = 8;
+        public const string TopBooksCache = "topBooks";
+        public const int TopBooksExpirationInMinutes = 10;
     }
 }
