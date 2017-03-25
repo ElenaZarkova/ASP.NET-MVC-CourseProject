@@ -1,5 +1,6 @@
-﻿@model DateTime
+﻿@using System.Globalization
+@model DateTime
 
-@Html.TextBoxFor(m => Model, new { @class = "datefield form-control" })
+@Html.TextBoxFor(m => Model, new { @class = "datefield form-control", @Value = DateTime.Now.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture) })
 
 

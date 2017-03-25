@@ -29,6 +29,7 @@ namespace CourseProject.ViewModels.Admin.AddBook
         // TODO: Fix date validation
         [Required]
         [Display(Name = "Published on")]
+        [Range(typeof(DateTime), "1/1/1400", "1/1/3000")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PublishedOn { get; set; }
 

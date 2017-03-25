@@ -41,6 +41,7 @@ namespace CourseProject.Models
         public string Description { get; set; }
         
         [Required]
+        [Range(typeof(DateTime), "1/1/1400", "1/1/3000")]
         public DateTime PublishedOn { get; set; }
 
         [Required]
