@@ -5,6 +5,7 @@ using CourseProject.Data.Contracts;
 using CourseProject.Models;
 using CourseProject.Services.Contracts;
 using System.Data.Entity;
+using CourseProject.ViewModels.Admin.AddBook;
 
 namespace CourseProject.Services
 {
@@ -22,10 +23,28 @@ namespace CourseProject.Services
             this.data = data;
         }
 
-        public void AddBook(Book book)
+        public bool BookWithTitleExists(string title)
         {
+            var exists = this.data.Books.All.Any(x => x.Title == title);
+            return exists;
+        }
+
+        public int AddBook(BookModel bookModel, string fileName)
+        {
+            var book = new Book()
+            {
+                Title = bookModel.Title,
+                Author = bookModel.Author,
+                Description = bookModel.Description,
+                PublishedOn = bookModel.PublishedOn,
+                GenreId = bookModel.GenreId,
+                CoverFile = fileName
+            };
+
             this.data.Books.Add(book);
             this.data.SaveChanges();
+
+            return book.Id;
         }
 
         public IEnumerable<Book> GetHighestRatedBooks(int count)

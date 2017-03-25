@@ -127,6 +127,10 @@
       <Project>{9e67a7c2-6b3a-495d-9112-bb1376bfba6f}</Project>
       <Name>CourseProject.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CourseProject.ViewModels\CourseProject.ViewModels.csproj">
+      <Project>{27c2c0f6-06d4-4a65-8d41-7b735f79ad52}</Project>
+      <Name>CourseProject.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseProject.Web\CourseProject.Web.csproj">
       <Project>{79648676-db0a-43f3-a0cf-307c61539b5d}</Project>
       <Name>CourseProject.Web</Name>

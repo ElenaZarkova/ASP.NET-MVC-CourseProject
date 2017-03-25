@@ -6,5 +6,6 @@
         public const string GenresCache = "genres";
         public const int GenresExpirationInMinutes = 30;
         public const string AdminRole = "Admin";
+        public const string ViewModelsAssembly = "CourseProject.ViewModels";
     }
 }

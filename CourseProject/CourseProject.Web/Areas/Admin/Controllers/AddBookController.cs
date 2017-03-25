@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using CourseProject.Models;
 using AutoMapper;
-using CourseProject.Web.Models;
 using CourseProject.Data.Contracts;
 using CourseProject.Services.Contracts;
 using System.IO;
-using CourseProject.Web.Areas.Admin.Models;
+using CourseProject.ViewModels.Admin.AddBook;
 using CourseProject.Web.Common;
 using CourseProject.Web.Common.Providers.Contracts;
+using CourseProject.Web.Mapping;
 
 namespace CourseProject.Web.Areas.Admin.Controllers
 {
@@ -23,13 +23,15 @@ namespace CourseProject.Web.Areas.Admin.Controllers
         private readonly IUserProvider userProvider;
         private readonly IServerProvider serverProvider;
         private readonly ICacheProvider cacheProvider;
+        private readonly IMapperAdapter mapper;
 
         public AddBookController(
             IBooksService booksService, 
             IGenresService genresService, 
             IUserProvider userProvider,
             IServerProvider serverProvider,
-            ICacheProvider cacheProvider)
+            ICacheProvider cacheProvider,
+            IMapperAdapter mapper)
         {
             if (booksService == null)
             {
@@ -46,6 +48,7 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             this.userProvider = userProvider;
             this.serverProvider = serverProvider;
             this.cacheProvider = cacheProvider;
+            this.mapper = mapper;
         }
 
         public ActionResult Index()
@@ -58,46 +61,37 @@ namespace CourseProject.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Index([Bind(Exclude = "Genres")]AddBookViewModel bookModel)
+        public ActionResult Index([Bind(Exclude = "Genres")]AddBookViewModel bookSubmitModel)
         {
             if (!ModelState.IsValid)
             {
-                bookModel.Genres = this.GetGenres();
-                return View(bookModel);
+                bookSubmitModel.Genres = this.GetGenres();
+                return View(bookSubmitModel);
             }
 
-            if (!this.IsImageFile(bookModel.CoverFile))
+            if (!this.IsImageFile(bookSubmitModel.CoverFile))
             {
                 this.ModelState.AddModelError("CoverFile", "Cover photo should be an image file.");
-                bookModel.Genres = this.GetGenres();
-                return View(bookModel);
+                bookSubmitModel.Genres = this.GetGenres();
+                return View(bookSubmitModel);
             }
 
-            var book = this.GetBook(bookModel);
-            this.booksService.AddBook(book);
+            if (this.booksService.BookWithTitleExists(bookSubmitModel.Title))
+            {
+                this.ModelState.AddModelError("Title", "There is already a book with this title added to BetterReads");
+                bookSubmitModel.Genres = this.GetGenres();
+                return View(bookSubmitModel);
+            }
+
+            var filename = bookSubmitModel.CoverFile.FileName;
+            var path = this.serverProvider.MapPath($"~/Content/Images/{filename}");
+            bookSubmitModel.CoverFile.SaveAs(path);
+
+            var bookModel = this.mapper.Map<BookModel>(bookSubmitModel);
+            var bookId = this.booksService.AddBook(bookModel, filename);
 
             this.TempData.Add("Addition", "Your book was added successfully.");
-            return this.Redirect($"/book/{book.Id}");
-        }
-
-        private Book GetBook(AddBookViewModel bookModel)
-        {
-            var filename = bookModel.CoverFile.FileName;
-            var path = this.serverProvider.MapPath($"~/Content/Images/{filename}");
-            bookModel.CoverFile.SaveAs(path);
-
-            // TODO: Should it be mapped
-            var book = new Book()
-            {
-                Title = bookModel.Title,
-                Author = bookModel.Author,
-                Description = bookModel.Description,
-                PublishedOn = bookModel.PublishedOn,
-                GenreId = bookModel.GenreId,
-                CoverFile = filename
-            };
-
-            return book;
+            return this.Redirect($"/book/{bookId}");
         }
 
         private bool IsImageFile(HttpPostedFileBase file)

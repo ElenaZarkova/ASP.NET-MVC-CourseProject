@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using AutoMapper;
-using CourseProject.Web.Mapping;
+using CourseProject.ViewModels.Mapping;
 
 namespace CourseProject.Web
 {

@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CourseProject.Web.Identity;
-using CourseProject.Web.Models;
+using CourseProject.ViewModels.Account;
 using CourseProject.Models;
 using CourseProject.Web.Identity.Contracts;
 

@@ -5,8 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
 using CourseProject.Data.Contracts;
-using CourseProject.Web.Models;
-using CourseProject.Models;
+using CourseProject.ViewModels;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseProject.Services.Contracts;
+using CourseProject.ViewModels.BookDetails;
 using CourseProject.Web.Mapping;
-using CourseProject.Web.Models;
 using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Controllers

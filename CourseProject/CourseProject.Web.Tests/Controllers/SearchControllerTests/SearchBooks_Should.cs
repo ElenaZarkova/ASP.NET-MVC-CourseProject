@@ -9,9 +9,10 @@ using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
 using CourseProject.Models;
-using CourseProject.Web.Models;
 using CourseProject.Web.Common;
 using CourseProject.Web.Attributes;
+using CourseProject.ViewModels;
+using CourseProject.ViewModels.Search;
 
 namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
 {

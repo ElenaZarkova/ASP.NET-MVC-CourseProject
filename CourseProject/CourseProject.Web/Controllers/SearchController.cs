@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseProject.Services.Contracts;
+using CourseProject.ViewModels;
+using CourseProject.ViewModels.Search;
 using CourseProject.Web.Common;
 using CourseProject.Web.Mapping;
-using CourseProject.Web.Models;
 using CourseProject.Web.Attributes;
 
 namespace CourseProject.Web.Controllers

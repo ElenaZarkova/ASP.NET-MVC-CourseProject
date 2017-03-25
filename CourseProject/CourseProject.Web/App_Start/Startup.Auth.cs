@@ -5,7 +5,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using CourseProject.Web.Models;
 using CourseProject.Data;
 using CourseProject.Models;
 using CourseProject.Web.Identity;

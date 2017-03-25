@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CourseProject.Web.Mapping;
+using CourseProject.ViewModels.Mapping;
 using CourseProject.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace CourseProject.Web.Models
+namespace CourseProject.ViewModels
 {
     public class BookViewModel: IMapFrom<Book>
     {

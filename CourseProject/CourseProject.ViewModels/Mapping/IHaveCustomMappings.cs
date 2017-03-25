@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace CourseProject.Web.Mapping
+namespace CourseProject.ViewModels.Mapping
 {
     public interface IHaveCustomMappings
     {

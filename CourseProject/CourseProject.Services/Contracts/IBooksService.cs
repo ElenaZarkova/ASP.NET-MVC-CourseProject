@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using CourseProject.Models;
+using CourseProject.ViewModels.Admin.AddBook;
 
 namespace CourseProject.Services.Contracts
 {
     public interface IBooksService
     {
-        void AddBook(Book book);
+        bool BookWithTitleExists(string title);
+
+        int AddBook(BookModel bookModel, string fileName);
 
         IEnumerable<Book> GetHighestRatedBooks(int count);
 
