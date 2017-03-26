@@ -257,6 +257,7 @@
     <Compile Include="Common\Providers\UserProvider.cs" />
     <Compile Include="Mapping\IMapperAdapter.cs" />
     <Compile Include="Mapping\MapperAdapter.cs" />
+    <Compile Include="Models\ForSomeReason.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -405,7 +406,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Images\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
