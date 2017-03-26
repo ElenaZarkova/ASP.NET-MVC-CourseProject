@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using CourseProject.Web.Common.Providers.Contracts;
 
 namespace CourseProject.Web.Common.Providers
@@ -9,6 +10,11 @@ namespace CourseProject.Web.Common.Providers
 
         public ServerProvider(HttpContextBase httpContext)
         {
+            if (httpContext == null)
+            {
+                throw new ArgumentNullException("httpContext");
+            }
+
             this.httpContext = httpContext;
         }
 

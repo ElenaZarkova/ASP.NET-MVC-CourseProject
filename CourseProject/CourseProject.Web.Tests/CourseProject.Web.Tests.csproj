@@ -109,6 +109,8 @@
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\Constructor_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\IndexPost_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AddBookControllerTests\Index_Should.cs" />
+    <Compile Include="Common\Providers\ServerProviderTests\Constructor_Should.cs" />
+    <Compile Include="Common\Providers\ServerProviderTests\MapPath_Should.cs" />
     <Compile Include="Controllers\AccountControllerTests\Class_Should.cs" />
     <Compile Include="Controllers\AccountControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\AccountControllerTests\Login_Should.cs" />
