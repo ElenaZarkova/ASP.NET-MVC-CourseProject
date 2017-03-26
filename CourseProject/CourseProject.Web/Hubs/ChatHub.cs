@@ -13,9 +13,8 @@ namespace CourseProject.Web.Hubs
     public class ChatHub : Hub
     {
         private readonly IUsersService usersService;
-       // private readonly HttpServerUtility serverUtility;
 
-        public ChatHub(IUsersService usersService)// , HttpServerUtility serverUtility)
+        public ChatHub(IUsersService usersService)
         {
             if (usersService == null)
             {
@@ -23,7 +22,6 @@ namespace CourseProject.Web.Hubs
             }
 
             this.usersService = usersService;
-            //this.serverUtility = serverUtility;
         }
 
         public void Connect(string username)
