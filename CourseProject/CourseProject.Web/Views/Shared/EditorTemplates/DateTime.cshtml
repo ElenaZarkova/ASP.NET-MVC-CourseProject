@@ -1,6 +1,11 @@
 ﻿@using System.Globalization
 @model DateTime
 
-@Html.TextBoxFor(m => Model, new { @class = "datefield form-control", @Value = DateTime.Now.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture) })
+@Html.TextBoxFor(m => Model,
+    new {
+        @class = "datefield form-control",
+        @Value = Model.Year != 1 ? Model.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture) : DateTime.Now.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture),
+        name = ViewData.TemplateInfo.GetFullHtmlFieldName("")
+    })
 
 

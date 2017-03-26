@@ -1,4 +1,5 @@
-﻿@model BookDetailsViewModel
+﻿@using System.Globalization
+@model BookDetailsViewModel
 @{
     ViewBag.Title = Model.Title;
 }
@@ -24,7 +25,7 @@
             <h3>@Model.Author</h3>
             <p class="book-description">@Model.Description</p>
             <h5>@Model.GenreName</h5>
-            <p>Published on: @Model.PublishedOn.ToShortDateString()</p>
+            <p>Published on: @Model.PublishedOn.ToString("dd/MMMM/yyyy", CultureInfo.InvariantCulture)</p>
 
 
             @Html.Action("GetRatingPartial", new { id = Model.Id })

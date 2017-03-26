@@ -101,6 +101,19 @@ namespace CourseProject.ViewModels.Tests.Account.AddBookViewModelTests
         }
 
         [Test]
+        public void HaveRangeAttributeWithCorrectErrorMessage()
+        {
+            var viewModel = new AddBookViewModel();
+
+            var attr = viewModel.GetType()
+                .GetProperty("PublishedOn")
+                .GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.RangeAttribute), false)[0]
+                as System.ComponentModel.DataAnnotations.RangeAttribute;
+
+            Assert.AreEqual("Published on must be a date between years 1400 and 3000", attr.ErrorMessage);
+        }
+
+        [Test]
         public void HaveDisplayFormatAttribute()
         {
             var viewModel = new AddBookViewModel();

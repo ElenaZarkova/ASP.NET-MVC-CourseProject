@@ -28,7 +28,7 @@ namespace CourseProject.ViewModels.Admin.AddBook
         
         [Required]
         [Display(Name = "Published on")]
-        [Range(typeof(DateTime), "1/1/1400", "1/1/3000")]
+        [Range(typeof(DateTime), "1/1/1400", "1/1/3000", ErrorMessage = "Published on must be a date between years 1400 and 3000")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PublishedOn { get; set; }
 
