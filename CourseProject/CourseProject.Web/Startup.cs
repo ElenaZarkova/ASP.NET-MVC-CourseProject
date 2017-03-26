@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
-using CourseProject.Web.App_Start.NinjectModules;
 
 [assembly: OwinStartupAttribute(typeof(CourseProject.Web.Startup))]
 namespace CourseProject.Web

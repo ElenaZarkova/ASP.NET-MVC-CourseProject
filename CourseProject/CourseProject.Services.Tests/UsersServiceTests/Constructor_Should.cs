@@ -7,7 +7,7 @@ using CourseProject.Data.Contracts;
 namespace CourseProject.Services.Tests.UsersServiceTests
 {
     [TestFixture]
-    class Constructor_Should
+    public class Constructor_Should
     {
         [Test]
         public void ThrowArgumentNullException_WhenDataIsNull()

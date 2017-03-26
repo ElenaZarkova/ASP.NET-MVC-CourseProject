@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Ninject.Web.Common;
 using CourseProject.Data;
 using CourseProject.Data.Contracts;

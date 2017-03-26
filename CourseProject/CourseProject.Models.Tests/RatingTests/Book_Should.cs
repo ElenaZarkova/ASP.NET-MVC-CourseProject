@@ -29,4 +29,3 @@ namespace CourseProject.Models.Tests.RatingTests
         }
     }
 }
-

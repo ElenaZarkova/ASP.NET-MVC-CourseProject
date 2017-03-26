@@ -35,14 +35,14 @@ namespace CourseProject.Models
         [MinLength(3)]
         [MaxLength(300)]
         public string Description { get; set; }
-        
+
         [Required]
         [Range(typeof(DateTime), "1/1/1400", "1/1/3000")]
         public DateTime PublishedOn { get; set; }
 
         [Required]
         public string CoverFile { get; set; }
-         
+
         public int GenreId { get; set; }
 
         public virtual Genre Genre { get; set; }
@@ -66,7 +66,7 @@ namespace CourseProject.Models
             get
             {
                 var count = this.Ratings.Count;
-                if(count > 0)
+                if (count > 0)
                 {
                     return this.Ratings.Sum(x => x.Value) / (double)count;
                 }

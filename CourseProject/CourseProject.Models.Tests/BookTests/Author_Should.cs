@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using NUnit.Framework;
 
 namespace CourseProject.Models.Tests.BookTests
@@ -80,4 +79,3 @@ namespace CourseProject.Models.Tests.BookTests
         }
     }
 }
-

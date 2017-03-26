@@ -106,7 +106,6 @@
     <Compile Include="Controllers\SearchControllerTests\SearchBooks_Should.cs" />
     <Compile Include="Controllers\SearchControllerTests\SearchInitial_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

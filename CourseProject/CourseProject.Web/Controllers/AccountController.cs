@@ -1,14 +1,9 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CourseProject.Web.Identity;
 using CourseProject.ViewModels.Account;
 using CourseProject.Models;
 using CourseProject.Web.Identity.Contracts;
@@ -21,22 +16,20 @@ namespace CourseProject.Web.Controllers
         private readonly IApplicationSignInManager signInManager;
         private readonly IApplicationUserManager userManager;
 
-        public AccountController(IApplicationUserManager userManager, IApplicationSignInManager signInManager )
+        public AccountController(IApplicationUserManager userManager, IApplicationSignInManager signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
-        //
+        
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return this.View();
         }
-
-        //
+        
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -45,7 +38,7 @@ namespace CourseProject.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return this.View(model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -54,27 +47,25 @@ namespace CourseProject.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return this.RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    this.ModelState.AddModelError("", "Invalid login attempt.");
+                    return this.View(model);
             }
         }
-
-        //
+        
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return this.View();
         }
-
-        //
+        
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -89,31 +80,31 @@ namespace CourseProject.Web.Controllers
                 {
                     await this.userManager.AddToRoleAsync(user.Id, CourseProject.Web.Common.Constants.RegularRole);
 
-                    await this.signInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await this.signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+
+                this.AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
-
-        //
+        
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return this.RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
@@ -160,9 +151,9 @@ namespace CourseProject.Web.Controllers
         {
             if (Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return this.Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
@@ -174,9 +165,9 @@ namespace CourseProject.Web.Controllers
 
             public ChallengeResult(string provider, string redirectUri, string userId)
             {
-                LoginProvider = provider;
-                RedirectUri = redirectUri;
-                UserId = userId;
+                this.LoginProvider = provider;
+                this.RedirectUri = redirectUri;
+                this.UserId = userId;
             }
 
             public string LoginProvider { get; set; }

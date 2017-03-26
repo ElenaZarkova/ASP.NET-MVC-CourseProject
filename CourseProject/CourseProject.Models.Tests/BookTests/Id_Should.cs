@@ -16,4 +16,3 @@ namespace CourseProject.Models.Tests.BookTests
         }
     }
 }
-

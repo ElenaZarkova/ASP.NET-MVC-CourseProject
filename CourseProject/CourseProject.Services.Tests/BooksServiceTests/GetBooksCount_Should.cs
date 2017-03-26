@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using CourseProject.Data.Contracts;
@@ -21,9 +18,9 @@ namespace CourseProject.Services.Tests.BooksServiceTests
             var mockedData = new Mock<IBetterReadsData>();
             var booksData = new List<Book>
             {
-                new Book() { Title = "some-digits-1", Author = ""},
-                new Book() { Title = "", Author = "aaaabbbbbb"},
-                new Book() { Title = "random", Author = "strings"},
+                new Book() { Title = "some-digits-1", Author = "" },
+                new Book() { Title = "", Author = "aaaabbbbbb" },
+                new Book() { Title = "random", Author = "strings" },
             }.AsQueryable();
 
             mockedData.Setup(x => x.Books.All).Returns(booksData);
@@ -73,10 +70,10 @@ namespace CourseProject.Services.Tests.BooksServiceTests
             // only the first two answer the conditions
             var booksData = new List<Book>
             {
-                new Book() {Title="", Author="abc-blabal", GenreId = 1 },
-                new Book() {Title="abc", Author="", GenreId = 3 },
-                new Book() {Title="", Author="", GenreId = 3 },
-                new Book() {Title="abc", Author="", GenreId = 4 }
+                new Book() { Title = "", Author = "abc-blabal", GenreId = 1 },
+                new Book() { Title = "abc", Author = "", GenreId = 3 },
+                new Book() { Title = "", Author = "", GenreId = 3 },
+                new Book() { Title = "abc", Author = "", GenreId = 4 }
             }.AsQueryable();
 
             mockedData.Setup(x => x.Books.All).Returns(booksData);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace CourseProject.Web.Controllers
 {
@@ -12,7 +8,7 @@ namespace CourseProject.Web.Controllers
         // GET: Chat
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }

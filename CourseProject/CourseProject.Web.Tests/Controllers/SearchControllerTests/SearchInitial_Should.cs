@@ -5,18 +5,17 @@ using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
+using CourseProject.Models;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
-using CourseProject.Models;
-using CourseProject.ViewModels.Search;
 using CourseProject.Web.Common;
 using CourseProject.ViewModels;
+using CourseProject.ViewModels.Search;
 
 namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
 {
-    // TODO: maybe remove repeating tests
-
+    // TODO: maybe remove caching tests
     [TestFixture]
     public class SearchInitial_Should
     {

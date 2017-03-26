@@ -1,10 +1,7 @@
-﻿using CourseProject.Models;
-using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
+using CourseProject.Models;
 
 namespace CourseProject.Web.Identity.Contracts
 {

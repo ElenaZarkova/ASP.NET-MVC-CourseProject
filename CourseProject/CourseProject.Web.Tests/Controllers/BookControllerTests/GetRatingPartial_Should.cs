@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
-using CourseProject.Web.Identity.Contracts;
-using TestStack.FluentMVCTesting;
 using CourseProject.Web.Common.Providers.Contracts;
 using CourseProject.ViewModels.BookDetails;
 
@@ -150,6 +145,5 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
                     Assert.AreEqual(x.UserRating, userRating);
                 });
         }
-
     }
 }

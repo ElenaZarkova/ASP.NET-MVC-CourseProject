@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 using CourseProject.Models;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
-using TestStack.FluentMVCTesting;
-using CourseProject.Web.Identity.Contracts;
 using CourseProject.Web.Common.Providers.Contracts;
 using CourseProject.ViewModels.BookDetails;
 

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using CourseProject.Models;
 
@@ -60,8 +56,6 @@ namespace CourseProject.Models.Tests.UserBookTests
             userBook.UserId = "userid123";
 
             Assert.AreEqual("userid123", userBook.UserId);
-
         }
     }
 }
-

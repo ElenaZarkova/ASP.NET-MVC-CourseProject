@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using NUnit.Framework;
 using Moq;
 using CourseProject.Data.Contracts;
 using CourseProject.Data.Repositories;
 using CourseProject.Data.Tests.Repositories.EfRepositoryTests.Mocks;
-using System.Data.Entity;
 
 namespace CourseProject.Data.Tests.Repositories.EfRepositoryTests
 {

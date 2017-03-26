@@ -8,7 +8,7 @@ using CourseProject.Web.Common.Providers.Contracts;
 namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
 {
     [TestFixture]
-    class Constructor_Should
+    public class Constructor_Should
     {
         [Test]
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenBooksServiceIsNull()
@@ -18,7 +18,7 @@ namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
             var mockedMapper = new Mock<IMapperAdapter>();
 
             // Act & Assert
-            Assert.That(() => new HomeController(null,mockedCacheProvider.Object, mockedMapper.Object),
+            Assert.That(() => new HomeController(null, mockedCacheProvider.Object, mockedMapper.Object),
                 Throws.ArgumentNullException.With.Message.Contains("booksService"));
         }
 
@@ -42,7 +42,7 @@ namespace CourseProject.Web.Tests.Controllers.HomeControllerTests
             var mockedCacheProvider = new Mock<ICacheProvider>();
 
             // Act & Assert
-            Assert.That(() => new HomeController(mockedBooksService.Object,mockedCacheProvider.Object, null),
+            Assert.That(() => new HomeController(mockedBooksService.Object, mockedCacheProvider.Object, null),
                 Throws.ArgumentNullException.With.Message.Contains("mapper"));
         }
 

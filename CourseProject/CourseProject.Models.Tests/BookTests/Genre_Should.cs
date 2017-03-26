@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace CourseProject.Models.Tests.bookTests
+namespace CourseProject.Models.Tests.BookTests
 {
     [TestFixture]
     public class Genre_Should

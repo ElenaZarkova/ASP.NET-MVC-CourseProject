@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CourseProject.Data.Contracts;
 using CourseProject.Models;
 using CourseProject.Services.Contracts;
@@ -39,7 +36,6 @@ namespace CourseProject.Services
         public void RateBook(int bookId, string userId, int rate)
         {
             // TODO: Should it check rate range ?
-
             var rating = this.data.Ratings.All.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefault();
             if (rating != null)
             {

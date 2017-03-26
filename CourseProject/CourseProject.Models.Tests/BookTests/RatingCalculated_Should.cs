@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace CourseProject.Models.Tests.BookTests
@@ -16,9 +13,9 @@ namespace CourseProject.Models.Tests.BookTests
             var book = new Book();
             var ratings = new List<Rating>()
             {
-                new Rating() {Value = 3 },
-                new Rating() {Value = 4 },
-                new Rating() {Value = 1 }
+                new Rating() { Value = 3 },
+                new Rating() { Value = 4 },
+                new Rating() { Value = 1 }
             };
             book.Ratings = ratings;
 

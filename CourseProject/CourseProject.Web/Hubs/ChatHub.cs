@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
-using CourseProject.Services.Contracts;
 using Microsoft.AspNet.Identity;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+using CourseProject.Services.Contracts;
 
 namespace CourseProject.Web.Hubs
 {
@@ -41,7 +37,7 @@ namespace CourseProject.Web.Hubs
         public void CheckUsernameAndConnect(string username)
         {
             var exists = this.usersService.CheckIfUserExists(username);
-            // var exists = true;
+
             if (exists)
             {
                 this.Connect(username);

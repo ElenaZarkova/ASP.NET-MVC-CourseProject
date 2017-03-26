@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using CourseProject.Web.Controllers;
 using TestStack.FluentMVCTesting;
+using CourseProject.Web.Controllers;
 
 namespace CourseProject.Web.Tests.Controllers.ProfileControllerTests
 {

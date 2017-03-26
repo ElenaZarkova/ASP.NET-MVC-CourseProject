@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using CourseProject.Services;
@@ -21,9 +18,9 @@ namespace CourseProject.Services.Tests.RatingsServiceTests
             // Arrange
             var mockedData = new Mock<IBetterReadsData>();
 
-            var rating1Match = new Rating() {  BookId = 3, UserId = "str", Value = 11 };
-            var rating2Match = new Rating() {  BookId = 15, UserId = "user", Value = 2 };
-            var ratingNotMatch = new Rating() {  BookId = 1, UserId = "str" };
+            var rating1Match = new Rating() { BookId = 3, UserId = "str", Value = 11 };
+            var rating2Match = new Rating() { BookId = 15, UserId = "user", Value = 2 };
+            var ratingNotMatch = new Rating() { BookId = 1, UserId = "str" };
             var ratings = new List<Rating>()
             {
                 rating1Match,
@@ -48,7 +45,7 @@ namespace CourseProject.Services.Tests.RatingsServiceTests
         {
             // Arrange
             var mockedData = new Mock<IBetterReadsData>();
-            
+
             var ratings = new List<Rating>()
             {
                 new Mock<Rating>().Object,

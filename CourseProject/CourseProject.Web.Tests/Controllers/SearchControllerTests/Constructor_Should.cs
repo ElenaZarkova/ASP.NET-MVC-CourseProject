@@ -7,7 +7,7 @@ using CourseProject.Web.Controllers;
 namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
 {
     [TestFixture]
-    class Constructor_Should
+    public class Constructor_Should
     {
         [Test]
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenBooksServiceIsNull()
@@ -58,4 +58,3 @@ namespace CourseProject.Web.Tests.Controllers.SearchControllerTests
         }
     }
 }
-

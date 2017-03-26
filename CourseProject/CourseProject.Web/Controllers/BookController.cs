@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CourseProject.Services.Contracts;
 using CourseProject.ViewModels.BookDetails;
@@ -75,7 +72,7 @@ namespace CourseProject.Web.Controllers
                 UserRating = userRating
             };
 
-            return PartialView("_RatingPartial", ratingModel);
+            return this.PartialView("_RatingPartial", ratingModel);
         }
 
         [Authorize]
@@ -87,7 +84,7 @@ namespace CourseProject.Web.Controllers
             var rating = this.booksService.GetBookRating(id);
 
             // TODO: should it be uppercase
-            return Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
+            return this.Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
         }
     }
 }

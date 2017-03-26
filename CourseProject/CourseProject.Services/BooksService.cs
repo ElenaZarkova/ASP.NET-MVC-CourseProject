@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using CourseProject.Data.Contracts;
 using CourseProject.Models;
 using CourseProject.Services.Contracts;
-using System.Data.Entity;
 using CourseProject.ViewModels.Admin.AddBook;
 
 namespace CourseProject.Services
@@ -94,9 +94,15 @@ namespace CourseProject.Services
             orderProperty = orderProperty == null ? string.Empty : orderProperty.ToLower();
             switch (orderProperty)
             {
-                case "author": books = books.OrderBy(x => x.Author); break;
-                case "year": books = books.OrderByDescending(x => x.PublishedOn.Year); break;
-                default: books = books.OrderBy(x => x.Title); break;
+                case "author":
+                    books = books.OrderBy(x => x.Author);
+                    break;
+                case "year":
+                    books = books.OrderByDescending(x => x.PublishedOn.Year);
+                    break;
+                default:
+                    books = books.OrderBy(x => x.Title);
+                    break;
             }
 
             var resultBooks = books

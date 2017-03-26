@@ -3,6 +3,7 @@
     public interface IUserProvider
     {
         string GetUserId();
+
         string GetUsername();
     }
 }

@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CourseProject.Models;
-using AutoMapper;
-using CourseProject.Data.Contracts;
 using CourseProject.Services.Contracts;
-using System.IO;
 using CourseProject.ViewModels.Admin.AddBook;
 using CourseProject.Web.Common;
 using CourseProject.Web.Common.Providers.Contracts;
@@ -86,21 +82,21 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 bookSubmitModel.Genres = this.GetGenres();
-                return View(bookSubmitModel);
+                return this.View(bookSubmitModel);
             }
 
             if (!this.IsImageFile(bookSubmitModel.CoverFile))
             {
                 this.ModelState.AddModelError("CoverFile", Constants.CoverFileErrorMessage);
                 bookSubmitModel.Genres = this.GetGenres();
-                return View(bookSubmitModel);
+                return this.View(bookSubmitModel);
             }
 
             if (this.booksService.BookWithTitleExists(bookSubmitModel.Title))
             {
                 this.ModelState.AddModelError("Title", Constants.TitleExistsErrorMessage);
                 bookSubmitModel.Genres = this.GetGenres();
-                return View(bookSubmitModel);
+                return this.View(bookSubmitModel);
             }
 
             var filename = bookSubmitModel.CoverFile.FileName;
@@ -140,6 +136,7 @@ namespace CourseProject.Web.Areas.Admin.Controllers
             else
             {
                 genres = this.genresService.GetAllGenres().Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList();
+                
                 // maxvalue because api
                 this.cacheProvider.InsertWithSlidingExpiration(Constants.GenresCache, genres, Constants.GenresExpirationInMinutes);
             }

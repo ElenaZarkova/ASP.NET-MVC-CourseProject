@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CourseProject.Services.Contracts;
 using CourseProject.ViewModels;
@@ -46,7 +44,7 @@ namespace CourseProject.Web.Controllers
             var genres = this.genresService.GetAllGenres();
             model.Genres = this.mapper.Map<IEnumerable<GenreViewModel>>(genres);
 
-            return View(model);
+            return this.View(model);
         }
         
         [ChildActionOnly]
@@ -59,14 +57,9 @@ namespace CourseProject.Web.Controllers
 
         [HttpPost]
         [AjaxOnly]
-        public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page) //, string genresIds)
+        public PartialViewResult SearchBooks(SearchSubmitModel submitModel, int? page)
         {
             int actualPage = page ?? 1;
-
-            //if(submitModel.ChosenGenresIds == null && string.IsNullOrEmpty(genresIds))
-            //{
-            //    submitModel.ChosenGenresIds = genresIds.Split(';').Select(int.Parse).ToList();
-            //}
 
             return this.ExecuteSearch(submitModel, actualPage);
         }
@@ -81,7 +74,7 @@ namespace CourseProject.Web.Controllers
             resultViewModel.SubmitModel = submitModel;
             resultViewModel.Pages = (int)Math.Ceiling((double)count / Constants.BooksPerPage);
             resultViewModel.Page = page;
-            resultViewModel.Books = mapper.Map<IEnumerable<BookViewModel>>(result);
+            resultViewModel.Books = this.mapper.Map<IEnumerable<BookViewModel>>(result);
 
             return this.PartialView("_ResultsPartial", resultViewModel);
         }

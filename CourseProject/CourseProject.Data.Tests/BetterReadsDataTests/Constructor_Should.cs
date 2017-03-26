@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Moq;
 using CourseProject.Data.Contracts;
 using CourseProject.Data.Repositories;
-using CourseProject.Data.Tests.Repositories.EfRepositoryTests.Mocks;
 using CourseProject.Models;
 
 namespace CourseProject.Data.Tests.BetterReadsDataTests
@@ -30,7 +24,7 @@ namespace CourseProject.Data.Tests.BetterReadsDataTests
                 mockedUsers.Object,
                 mockedBooks.Object,
                 mockedGenres.Object,
-                mockedRatings.Object), 
+                mockedRatings.Object),
                 Throws.ArgumentNullException.With.Message.Contains("Database context cannot be null."));
         }
 

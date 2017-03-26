@@ -26,7 +26,6 @@ namespace CourseProject.Models.Tests.UserBookTests
             userBook.User = user;
 
             Assert.AreEqual(user, userBook.User);
-
         }
     }
 }

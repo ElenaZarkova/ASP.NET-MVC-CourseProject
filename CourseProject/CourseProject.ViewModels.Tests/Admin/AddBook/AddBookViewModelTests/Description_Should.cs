@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Mvc;
 using NUnit.Framework;
 using CourseProject.ViewModels.Admin.AddBook;
-using System.Web.Mvc;
 
 namespace CourseProject.ViewModels.Tests.Account.AddBookViewModelTests
 {

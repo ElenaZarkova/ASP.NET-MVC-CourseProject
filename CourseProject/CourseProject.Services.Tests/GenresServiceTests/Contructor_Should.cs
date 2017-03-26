@@ -20,8 +20,7 @@ namespace CourseProject.Services.Tests.GenresServiceTests
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenDataIsNull()
         {
             // Act & Assert
-            Assert.That(() => new GenresService(null), 
-                Throws.ArgumentNullException.With.Message.Contains("data"));
+            Assert.That(() => new GenresService(null), Throws.ArgumentNullException.With.Message.Contains("data"));
         }
 
         [Test]

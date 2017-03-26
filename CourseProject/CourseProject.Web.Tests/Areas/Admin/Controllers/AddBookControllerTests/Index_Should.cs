@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
+using CourseProject.Models;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Common.Providers.Contracts;
 using CourseProject.Web.Areas.Admin.Controllers;
 using CourseProject.Web.Mapping;
-using TestStack.FluentMVCTesting;
-using CourseProject.ViewModels.Admin.AddBook;
 using CourseProject.Web.Common;
-using System.Web.Mvc;
-using CourseProject.Models;
+using CourseProject.ViewModels.Admin.AddBook;
 
 namespace CourseProject.Web.Tests.Areas.Admin.Controllers.AddBookControllerTests
 {
     [TestFixture]
     public class Index_Should
     {
-        // TODO: maybe remove some tests
-
+        // TODO: maybe decide on tests for caching
         private Mock<IBooksService> mockedBooksService;
         private Mock<IGenresService> mockedGenresService;
         private Mock<IUserProvider> mockedUserProvider;
@@ -41,12 +37,12 @@ namespace CourseProject.Web.Tests.Areas.Admin.Controllers.AddBookControllerTests
             this.mockedMapper = new Mock<IMapperAdapter>();
 
             this.controller = new AddBookController(
-                mockedBooksService.Object,
-                mockedGenresService.Object,
-                mockedUserProvider.Object,
-                mockedServerProvider.Object,
-                mockedCacheProvider.Object,
-                mockedMapper.Object);
+                this.mockedBooksService.Object,
+                this.mockedGenresService.Object,
+                this.mockedUserProvider.Object,
+                this.mockedServerProvider.Object,
+                this.mockedCacheProvider.Object,
+                this.mockedMapper.Object);
         }
 
         [Test]

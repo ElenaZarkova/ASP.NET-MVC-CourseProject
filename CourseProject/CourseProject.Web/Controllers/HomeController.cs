@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using CourseProject.Data.Contracts;
 using CourseProject.ViewModels;
 using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
@@ -21,7 +18,7 @@ namespace CourseProject.Web.Controllers
 
         public HomeController(IBooksService booksService, ICacheProvider cacheProvider, IMapperAdapter mapper)
         {
-            if(booksService == null)
+            if (booksService == null)
             {
                 throw new ArgumentNullException("booksService");
             }
@@ -45,7 +42,7 @@ namespace CourseProject.Web.Controllers
         {
             var topBooks = (IEnumerable<BookViewModel>)this.cacheProvider.GetValue(Constants.TopBooksCache);
 
-            if(topBooks == null)
+            if (topBooks == null)
             {
                 var books = this.booksService.GetHighestRatedBooks(Constants.TopBooksCount).ToList();
                 topBooks = this.mapper.Map<IEnumerable<BookViewModel>>(books);
@@ -53,17 +50,17 @@ namespace CourseProject.Web.Controllers
                 this.cacheProvider.InsertWithAbsoluteExpiration(Constants.TopBooksCache, topBooks, DateTime.UtcNow.AddMinutes(Constants.TopBooksExpirationInMinutes));
             }
 
-            return View(topBooks);
+            return this.View(topBooks);
         }
 
         public ActionResult About()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
-            return View();
+            return this.View();
         }
     }
 }

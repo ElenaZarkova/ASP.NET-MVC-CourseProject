@@ -76,19 +76,19 @@ namespace CourseProject.Services.Tests.BooksServiceTests
             mockedData.Verify(x => x.SaveChanges(), Times.Once);
         }
 
-        //[Test]
-        //public void ReturnCorrectBookId()
-        //{
-        //    // Arrange
-        //    var bookModel = new BookModel();
-        //    var mockedData = new Mock<IBetterReadsData>();
-        //    var service = new BooksService(mockedData.Object);
-
-        //    // Act
-        //    service.AddBook(new BookModel(), "filename");
-
-        //    // Assert
-        //    mockedData.Verify(x => x.SaveChanges(), Times.Once);
-        //}
+        // [Test]
+        // public void ReturnCorrectBookId()
+        // {
+        //     // Arrange
+        //     var bookModel = new BookModel();
+        //     var mockedData = new Mock<IBetterReadsData>();
+        //     var service = new BooksService(mockedData.Object);
+           
+        //     // Act
+        //     service.AddBook(new BookModel(), "filename");
+           
+        //     // Assert
+        //     mockedData.Verify(x => x.SaveChanges(), Times.Once);
+        // }
     }
 }
