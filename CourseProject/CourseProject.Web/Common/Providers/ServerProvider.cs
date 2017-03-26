@@ -5,9 +5,16 @@ namespace CourseProject.Web.Common.Providers
 {
     public class ServerProvider : IServerProvider
     {
+        private readonly HttpContextBase httpContext;
+
+        public ServerProvider(HttpContextBase httpContext)
+        {
+            this.httpContext = httpContext;
+        }
+
         public string MapPath(string relativePath)
         {
-            return HttpContext.Current.Server.MapPath(relativePath);
+            return this.httpContext.Server.MapPath(relativePath);
         }
     }
 }

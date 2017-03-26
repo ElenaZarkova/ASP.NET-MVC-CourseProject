@@ -6,14 +6,21 @@ namespace CourseProject.Web.Common.Providers
 {
     public class CacheProvider : ICacheProvider
     {
+        private readonly HttpContextBase httpContext;
+
+        public CacheProvider(HttpContextBase httpContext)
+        {
+            this.httpContext = httpContext;
+        }
+
         public object GetValue(string key)
         {
-            return HttpContext.Current.Cache[key];
+            return this.httpContext.Cache[key];
         }
 
         public void InsertWithSlidingExpiration(string key, object value, int minutes)
         {
-            HttpContext.Current.Cache.Insert(
+            this.httpContext.Cache.Insert(
                     key,
                     value,
                     null,
@@ -23,7 +30,7 @@ namespace CourseProject.Web.Common.Providers
 
         public void InsertWithAbsoluteExpiration(string key, object value, DateTime absoluteExpiration)
         {
-            HttpContext.Current.Cache.Insert(
+            this.httpContext.Cache.Insert(
                     key,
                     value,
                     null,

@@ -6,14 +6,21 @@ namespace CourseProject.Web.Common.Providers
 {
     public class UserProvider : IUserProvider
     {
+        private readonly HttpContextBase httpContext;
+
+        public UserProvider(HttpContextBase httpContext)
+        {
+            this.httpContext = httpContext;
+        }
+
         public string GetUserId()
         {
-            return HttpContext.Current.User.Identity.GetUserId();
+            return this.httpContext.User.Identity.GetUserId();
         }
 
         public string GetUsername()
         {
-            return HttpContext.Current.User.Identity.GetUserName();
+            return this.httpContext.User.Identity.GetUserName();
         }
     }
 }
