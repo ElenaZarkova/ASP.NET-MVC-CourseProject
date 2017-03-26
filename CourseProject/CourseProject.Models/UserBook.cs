@@ -12,7 +12,7 @@ namespace CourseProject.Models
         public int BookId { get; set; }
 
         public virtual User User { get; set; }
-        
+
         public virtual Book Book { get; set; }
 
         public BookStatus BookStatus { get; set; }

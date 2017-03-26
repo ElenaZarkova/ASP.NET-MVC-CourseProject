@@ -21,6 +21,6 @@
     }
     else
     {
-        <div>Rating: <span class="text-bold">@Model.RatingCalculated</span></div>
+        <div>Rating: <span class="text-bold">@(string.Format("{0:F2}", Model.RatingCalculated))</span></div>
     }
 </div>
