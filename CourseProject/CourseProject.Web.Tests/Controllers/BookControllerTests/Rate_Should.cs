@@ -140,7 +140,6 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
         public void ReturnJsonWithErrorAndCorrectMessage_WhenRatingNotValid()
         {
             // Arrange
-            var rating = 3.784;
             var mockedBooksService = new Mock<IBooksService>();
             var mockedRatingsService = new Mock<IRatingsService>();
             var mockedMapper = new Mock<IMapperAdapter>();

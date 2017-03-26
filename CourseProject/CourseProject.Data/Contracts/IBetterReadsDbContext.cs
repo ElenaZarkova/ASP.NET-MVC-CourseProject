@@ -6,6 +6,8 @@ namespace CourseProject.Data.Contracts
 {
     public interface IBetterReadsDbContext
     {
+        IDbSet<User> Users { get; set; }
+        
         IDbSet<Book> Books { get; set; }
 
         IDbSet<Genre> Genres { get; set; }
