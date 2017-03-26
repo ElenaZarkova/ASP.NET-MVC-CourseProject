@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -18,10 +19,20 @@ namespace CourseProject.Web.Controllers
 
         public AccountController(IApplicationUserManager userManager, IApplicationSignInManager signInManager)
         {
+            if (userManager == null)
+            {
+                throw new ArgumentNullException("userManager");
+            }
+
+            if (signInManager == null)
+            {
+                throw new ArgumentNullException("signInManager");
+            }
+
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        
+
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -29,7 +40,7 @@ namespace CourseProject.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
-        
+
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -58,14 +69,14 @@ namespace CourseProject.Web.Controllers
                     return this.View(model);
             }
         }
-        
+
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
             return this.View();
         }
-        
+
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -97,7 +108,7 @@ namespace CourseProject.Web.Controllers
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
-        
+
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
