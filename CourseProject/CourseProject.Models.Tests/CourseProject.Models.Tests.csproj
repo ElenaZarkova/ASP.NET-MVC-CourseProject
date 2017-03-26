@@ -42,6 +42,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -61,11 +69,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookTests\Author_Should.cs" />
+    <Compile Include="BookTests\Constructor_Should.cs" />
+    <Compile Include="BookTests\CoverFile_Should.cs" />
+    <Compile Include="BookTests\Description_Should.cs" />
+    <Compile Include="BookTests\GenreId_Should.cs" />
+    <Compile Include="BookTests\Genre_Should.cs" />
+    <Compile Include="BookTests\Id_Should.cs" />
+    <Compile Include="BookTests\PublishedOn_Should.cs" />
+    <Compile Include="BookTests\RatingCalculated_Should.cs" />
+    <Compile Include="BookTests\Ratings_Should.cs" />
+    <Compile Include="BookTests\Title_Should.cs" />
+    <Compile Include="BookTests\UserBooks_Should.cs" />
     <Compile Include="GenreTests\Books_Should.cs" />
     <Compile Include="GenreTests\Constructor_Should.cs" />
     <Compile Include="GenreTests\Id_Should.cs" />
     <Compile Include="GenreTests\Name_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingTests\BookId_Should.cs" />
+    <Compile Include="RatingTests\Book_Should.cs" />
+    <Compile Include="RatingTests\Id_Should.cs" />
+    <Compile Include="RatingTests\UserId_Should.cs" />
+    <Compile Include="RatingTests\User_Should.cs" />
+    <Compile Include="RatingTests\Value_Should.cs" />
+    <Compile Include="UserBookTests\BookId_Should.cs" />
+    <Compile Include="UserBookTests\BookStatus_Should.cs" />
+    <Compile Include="UserBookTests\Book_Should.cs" />
+    <Compile Include="UserBookTests\UserId_Should.cs" />
+    <Compile Include="UserBookTests\User_Should.cs" />
+    <Compile Include="UserTests\Class_Should.cs" />
+    <Compile Include="UserTests\Constructor_Should.cs" />
+    <Compile Include="UserTests\Ratings_Should.cs" />
+    <Compile Include="UserTests\UserBooks_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

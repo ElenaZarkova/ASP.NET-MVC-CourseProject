@@ -9,7 +9,7 @@ namespace CourseProject.ViewModels.Account
 {
     public class RegisterViewModel
     {
-        // TODO: db validations
+        // TODO: db validations ??
         [Required]
         [MinLength(3)]
         [MaxLength(20)]
