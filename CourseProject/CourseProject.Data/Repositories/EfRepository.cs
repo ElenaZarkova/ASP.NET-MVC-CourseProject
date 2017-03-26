@@ -30,8 +30,7 @@ namespace CourseProject.Data.Repositories
                 return this.dbSet;
             }
         }
-        
-        // TODO: Should leave method??
+       
         public T GetById(object id)
         {
             return this.dbSet.Find(id);

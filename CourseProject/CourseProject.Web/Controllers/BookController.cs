@@ -4,6 +4,8 @@ using CourseProject.Services.Contracts;
 using CourseProject.ViewModels.BookDetails;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Common.Providers.Contracts;
+using CourseProject.Web.Common;
+using CourseProject.Web.Attributes;
 
 namespace CourseProject.Web.Controllers
 {
@@ -59,7 +61,6 @@ namespace CourseProject.Web.Controllers
         [ChildActionOnly]
         public PartialViewResult GetRatingPartial(int id)
         {
-            // TODO: should not include genre
             var rating = this.booksService.GetBookRating(id);
 
             string userId = this.userProvider.GetUserId();
@@ -76,14 +77,17 @@ namespace CourseProject.Web.Controllers
         }
 
         [Authorize]
+        [AjaxOnly]
         public JsonResult Rate(int id, int rate)
         {
-            // TODO: error handling
+            if(rate < Constants.MinRating || Constants.MaxRating < rate)
+            {
+                return this.Json(new { error = true, message = Constants.RatingErrorMessage }, JsonRequestBehavior.AllowGet);
+            }
             var userId = this.userProvider.GetUserId();
             this.ratingsService.RateBook(id, userId, rate);
             var rating = this.booksService.GetBookRating(id);
-
-            // TODO: should it be uppercase
+            
             return this.Json(new { success = true, rating = rating }, JsonRequestBehavior.AllowGet);
         }
     }

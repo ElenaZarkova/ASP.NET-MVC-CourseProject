@@ -18,5 +18,9 @@
         public const int TopBooksCount = 8;
         public const string TopBooksCache = "topBooks";
         public const int TopBooksExpirationInMinutes = 10;
+
+        public const int MinRating = 1;
+        public const int MaxRating = 5;
+        public const string RatingErrorMessage = "Rating not valid";
     }
 }

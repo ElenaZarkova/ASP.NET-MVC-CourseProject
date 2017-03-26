@@ -48,7 +48,6 @@ namespace CourseProject.Data
             this.Ratings = ratingsRepo;
         }
 
-        // TODO: make them readonly fields and have only getter
         public IEfRepository<User> Users { get; private set; }
 
         public IEfRepository<Book> Books { get; private set; }

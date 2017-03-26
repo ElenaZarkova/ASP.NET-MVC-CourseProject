@@ -17,6 +17,13 @@
                     .prop('checked', true)
 				    .siblings('input').prop('checked', false);
 
+                    $star = $(".stars a[title=" + newRating + "]");
+                    $star
+                        .addClass('fullStar')
+                        .prevAll()
+                        .addClass('fullStar');
+
+                    $star.nextAll().removeClass('fullStar');
                     // $("#star-rating").rating.set($input, newRating);
                 const ratingCalc = +data.rating;
                 $("#rating-calc").text(ratingCalc.toFixed(2));

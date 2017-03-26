@@ -69,10 +69,8 @@ namespace CourseProject.Services
 
         public double GetBookRating(int id)
         {
-            // TODO: should it be in one query ??
             var book = this.data.Books.All
                 .Where(x => x.Id == id)
-                .Include(x => x.Ratings)
                 .FirstOrDefault();
 
             if (book != null)

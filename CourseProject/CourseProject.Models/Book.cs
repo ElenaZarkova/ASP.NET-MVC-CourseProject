@@ -24,8 +24,7 @@ namespace CourseProject.Models
         [MinLength(1)]
         [MaxLength(50)]
         public string Title { get; set; }
-
-        // TODO: maybe separate table
+        
         [Required]
         [MinLength(3)]
         [MaxLength(80)]

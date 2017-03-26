@@ -35,7 +35,6 @@ namespace CourseProject.Services
 
         public void RateBook(int bookId, string userId, int rate)
         {
-            // TODO: Should it check rate range ?
             var rating = this.data.Ratings.All.Where(x => x.BookId == bookId && x.UserId == userId).FirstOrDefault();
             if (rating != null)
             {

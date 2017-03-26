@@ -10,8 +10,7 @@ namespace CourseProject.Web
             routes.LowercaseUrls = true;
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            // TODO: fix route
+            
             routes.MapRoute(
                name: "Rate",
                url: "book/rate",

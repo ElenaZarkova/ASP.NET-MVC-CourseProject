@@ -7,6 +7,8 @@ using CourseProject.Services.Contracts;
 using CourseProject.Web.Mapping;
 using CourseProject.Web.Controllers;
 using CourseProject.Web.Common.Providers.Contracts;
+using CourseProject.Web.Attributes;
+using CourseProject.Web.Common;
 
 namespace CourseProject.Web.Tests.Controllers.BookControllerTests
 {
@@ -18,6 +20,15 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
         {
             var method = typeof(BookController).GetMethod("Rate");
             var hasAttr = method.GetCustomAttributes(typeof(AuthorizeAttribute), false).Any();
+
+            Assert.IsTrue(hasAttr);
+        }
+
+        [Test]
+        public void HaveAjaxOnlyAttribute()
+        {
+            var method = typeof(BookController).GetMethod("Rate");
+            var hasAttr = method.GetCustomAttributes(typeof(AjaxOnlyAttribute), false).Any();
 
             Assert.IsTrue(hasAttr);
         }
@@ -122,6 +133,27 @@ namespace CourseProject.Web.Tests.Controllers.BookControllerTests
                 // uppercase does not work
                 Assert.AreEqual(data.success, true);
                 Assert.AreEqual(data.rating, rating);
+            });
+        }
+
+        [Test]
+        public void ReturnJsonWithErrorAndCorrectMessage_WhenRatingNotValid()
+        {
+            // Arrange
+            var rating = 3.784;
+            var mockedBooksService = new Mock<IBooksService>();
+            var mockedRatingsService = new Mock<IRatingsService>();
+            var mockedMapper = new Mock<IMapperAdapter>();
+            var mockedUserProvider = new Mock<IUserProvider>();
+           
+            var controller = new BookController(mockedBooksService.Object, mockedRatingsService.Object, mockedMapper.Object, mockedUserProvider.Object);
+
+            // Act & Assert
+            controller.WithCallTo(c => c.Rate(4, 10)).ShouldReturnJson(data =>
+            {
+                // uppercase does not work
+                Assert.AreEqual(true, data.error);
+                Assert.AreEqual(Constants.RatingErrorMessage, data.message);
             });
         }
     }

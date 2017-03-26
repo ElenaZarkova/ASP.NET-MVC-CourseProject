@@ -25,8 +25,7 @@ namespace CourseProject.ViewModels.Admin.AddBook
         [MaxLength(300)]
         [AllowHtml]
         public string Description { get; set; }
-
-        // TODO: Fix date validation
+        
         [Required]
         [Display(Name = "Published on")]
         [Range(typeof(DateTime), "1/1/1400", "1/1/3000")]
